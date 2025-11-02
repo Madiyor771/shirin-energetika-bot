@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shirin Energetika Texnikumi - AI ChatBot</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1e5799, #207cca);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .chat-container {
+            width: 100%;
+            max-width: 500px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .chat-header {
+            background: #1e5799;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .chat-header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .chat-header p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+        
+        .chat-messages {
+            height: 400px;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f8f9fa;
+        }
+        
+        .message {
+            margin-bottom: 15px;
+            padding: 12px 16px;
+            border-radius: 18px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+        
+        .user-message {
+            background: #1e5799;
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .bot-message {
+            background: white;
+            border: 1px solid #e0e0e0;
+            margin-right: auto;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .chat-input {
+            display: flex;
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #eee;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+            font-size: 1rem;
+        }
+        
+        .chat-input input:focus {
+            border-color: #1e5799;
+        }
+        
+        .chat-input button {
+            background: #1e5799;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 25px;
+            margin-left: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .chat-input button:hover {
+            background: #16457a;
+        }
+        
+        .suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 0 20px 15px;
+            background: white;
+        }
+        
+        .suggestion {
+            background: #e3f2fd;
+            border: 1px solid #1e5799;
+            color: #1e5799;
+            padding: 8px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .suggestion:hover {
+            background: #1e5799;
+            color: white;
+        }
+
+        /* Typing Indicator */
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            background: #f0f0f0;
+            border-radius: 18px;
+            align-self: flex-start;
+            margin-bottom: 10px;
+            max-width: 200px;
+        }
+        
+        .typing-dots {
+            display: flex;
+            gap: 3px;
+        }
+        
+        .typing-dots span {
+            width: 8px;
+            height: 8px;
+            background: #1e5799;
+            border-radius: 50%;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+        
+        .typing-dots span:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dots span:nth-child(2) { animation-delay: -0.16s; }
+        
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+        
+        .typing-text {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .status-online {
+            background: #4CAF50;
+        }
+        
+        .status-offline {
+            background: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h1>🤖 Shirin Energetika Bot</h1>
+            <p>
+                <span class="status-indicator status-online" id="statusIndicator"></span>
+                <span id="statusText">AI yordamchi faol</span>
+            </p>
+        </div>
+        
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot-message">
+                <p>Assalomu alaykum! Shirin Energetika Texnikumi AI yordamchisiman. Sizga qanday yordam bera olaman?</p>
+            </div>
+        </div>
+        
+        <div class="suggestions">
+            <div class="suggestion" onclick="sendSuggestion('Dars jadvali')">📅 Dars jadvali</div>
+            <div class="suggestion" onclick="sendSuggestion('Mutaxassisliklar')">🎓 Mutaxassisliklar</div>
+            <div class="suggestion" onclick="sendSuggestion('O\\'qituvchilar')">👨‍🏫 O'qituvchilar</div>
+            <div class="suggestion" onclick="sendSuggestion('Manzil')">📍 Manzil</div>
+        </div>
+        
+        <div class="chat-input">
+            <input type="text" id="messageInput" placeholder="Xabaringizni yozing..." onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessage()">Yuborish</button>
+        </div>
+    </div>
+
+    <script>
+        // API URL - Render da avtomatik sozlanadi
+        const API_BASE_URL = window.location.origin;
+        const AI_API_URL = `${API_BASE_URL}/api/chat`;
+
+        // Status tekshirish
+        async function checkStatus() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/health`);
+                const data = await response.json();
+                
+                const statusIndicator = document.getElementById('statusIndicator');
+                const statusText = document.getElementById('statusText');
+                
+                if (data.status === 'active') {
+                    statusIndicator.className = 'status-indicator status-online';
+                    statusText.textContent = 'AI yordamchi faol';
+                } else {
+                    statusIndicator.className = 'status-indicator status-offline';
+                    statusText.textContent = 'AI yordamchi faol emas';
+                }
+            } catch (error) {
+                console.error('Status tekshirishda xatolik:', error);
+                const statusIndicator = document.getElementById('statusIndicator');
+                const statusText = document.getElementById('statusText');
+                statusIndicator.className = 'status-indicator status-offline';
+                statusText.textContent = 'Serverga ulanishda muammo';
+            }
+        }
+
+        // Xabar qo'shish
+        function addMessage(text, isUser) {
+            const messagesDiv = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+            
+            // Matnni formatlash (yangi qatorlarni saqlab qolish)
+            const formattedText = text.replace(/\n/g, '<br>');
+            messageDiv.innerHTML = `<p>${formattedText}</p>`;
+            
+            messagesDiv.appendChild(messageDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        // Typing indikator
+        function showTypingIndicator() {
+            const chatBody = document.getElementById('chatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.id = 'typingIndicator';
+            typingDiv.className = 'typing-indicator';
+            typingDiv.innerHTML = `
+                <div class="typing-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <span class="typing-text">AI javob yozmoqda...</span>
+            `;
+            chatBody.appendChild(typingDiv);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+            const typingIndicator = document.getElementById('typingIndicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+
+        // Xabar yuborish
+        async function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                addMessage(message, true);
+                input.value = '';
+                
+                showTypingIndicator();
+                
+                try {
+                    const response = await fetch(AI_API_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            message: message
+                        })
+                    });
+                    
+                    const data = await response.json();
+                    hideTypingIndicator();
+                    
+                    if (data.status === 'success') {
+                        addMessage(data.response, false);
+                    } else {
+                        addMessage('❌ ' + data.response, false);
+                    }
+                    
+                } catch (error) {
+                    hideTypingIndicator();
+                    console.error('Chat error:', error);
+                    addMessage('❌ Internet aloqasi yoki serverda muammo. Iltimos, keyinroq urinib ko\'ring.', false);
+                }
+            }
+        }
+
+        // Taklif xabarlari
+        function sendSuggestion(text) {
+            document.getElementById('messageInput').value = text;
+            sendMessage();
+        }
+
+        // Enter bosganda yuborish
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        // Dastlabki sozlamalar
+        document.addEventListener('DOMContentLoaded', function() {
+            checkStatus();
+            
+            // Har 30 soniyada statusni tekshirish
+            setInterval(checkStatus, 30000);
+            
+            // Foydalanuvchi diqqatini tortish
+            setTimeout(() => {
+                addMessage("💡 Masalan: 'AVM-2-24 dars jadvali', 'manzil', 'mutaxassisliklar' yoki 'oqituvchilar' deb yozing", false);
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
