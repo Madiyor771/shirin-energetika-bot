@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shirin Energetika Texnikumi - AI ChatBot</title>
+    <title>Shirin Energetika Texnikumi</title>
     <style>
+        /* Barcha avvalgi CSS kodlari saqlangan */
         * {
             margin: 0;
             padding: 0;
@@ -13,346 +14,857 @@
         }
         
         body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Sarlavha va navigatsiya */
+        header {
             background: linear-gradient(135deg, #1e5799, #207cca);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        
-        .chat-container {
-            width: 100%;
-            max-width: 500px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            overflow: hidden;
-        }
-        
-        .chat-header {
-            background: #1e5799;
             color: white;
-            padding: 20px;
-            text-align: center;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
         }
         
-        .chat-header h1 {
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 60px;
+            margin-right: 15px;
+            border-radius: 8px;
+        }
+        
+        .logo-text h1 {
             font-size: 1.5rem;
             margin-bottom: 5px;
         }
         
-        .chat-header p {
-            opacity: 0.9;
+        .logo-text p {
             font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        
+        nav ul li a:hover, 
+        nav ul li a.active {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        /* Hero bo'limi */
+        .hero {
+            background: linear-gradient(135deg, rgba(30, 87, 153, 0.8), rgba(32, 124, 202, 0.8)), url('/static/images/hero-bg.jpg') no-repeat center center/cover;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            margin-top: 80px;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #207cca;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #1e5799;
+        }
+        
+        /* Asosiy bo'limlar */
+        section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: #1e5799;
+            margin-bottom: 10px;
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Kollej haqida */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .about-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #1e5799;
+        }
+        
+        .about-text p {
+            margin-bottom: 15px;
+        }
+        
+        /* Mutaxassisliklar */
+        .specialties {
+            background-color: #f9f9f9;
+        }
+        
+        .specialties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .specialty-card {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+        
+        .specialty-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .specialty-card i {
+            font-size: 2.5rem;
+            color: #207cca;
+            margin-bottom: 15px;
+        }
+        
+        .specialty-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        /* Chatbot bo'limi */
+        .chatbot-section {
+            background-color: #1e5799;
+            color: white;
+        }
+        
+        .chatbot-section .section-title h2 {
+            color: white;
+        }
+        
+        .chatbot-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .chat-header {
+            background: #207cca;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
         }
         
         .chat-messages {
             height: 400px;
-            padding: 20px;
             overflow-y: auto;
-            background: #f8f9fa;
+            padding: 20px;
+            background: #f9f9f9;
         }
         
         .message {
             margin-bottom: 15px;
-            padding: 12px 16px;
-            border-radius: 18px;
-            max-width: 80%;
-            word-wrap: break-word;
+            display: flex;
         }
         
         .user-message {
-            background: #1e5799;
-            color: white;
-            margin-left: auto;
-            border-bottom-right-radius: 5px;
+            justify-content: flex-end;
         }
         
         .bot-message {
+            justify-content: flex-start;
+        }
+        
+        .message-content {
+            max-width: 70%;
+            padding: 12px 15px;
+            border-radius: 18px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+        
+        .user-message .message-content {
+            background: #207cca;
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .bot-message .message-content {
             background: white;
+            color: #333;
             border: 1px solid #e0e0e0;
-            margin-right: auto;
             border-bottom-left-radius: 5px;
         }
         
         .chat-input {
             display: flex;
-            padding: 20px;
+            padding: 15px;
             background: white;
-            border-top: 1px solid #eee;
+            border-top: 1px solid #e0e0e0;
         }
         
         .chat-input input {
             flex: 1;
-            padding: 12px 16px;
-            border: 1px solid #ddd;
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
             border-radius: 25px;
             outline: none;
             font-size: 1rem;
         }
         
-        .chat-input input:focus {
-            border-color: #1e5799;
-        }
-        
         .chat-input button {
-            background: #1e5799;
+            background: #207cca;
             color: white;
             border: none;
             border-radius: 25px;
-            padding: 12px 25px;
+            padding: 0 20px;
             margin-left: 10px;
             cursor: pointer;
-            font-weight: bold;
             transition: background 0.3s;
         }
         
         .chat-input button:hover {
-            background: #16457a;
-        }
-        
-        .suggestions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            padding: 0 20px 15px;
-            background: white;
-        }
-        
-        .suggestion {
-            background: #e3f2fd;
-            border: 1px solid #1e5799;
-            color: #1e5799;
-            padding: 8px 12px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .suggestion:hover {
             background: #1e5799;
-            color: white;
         }
-
-        /* Typing Indicator */
-        .typing-indicator {
+        
+        /* Yangiliklar */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .news-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .news-image {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .news-content {
+            padding: 20px;
+        }
+        
+        .news-date {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .news-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        /* Aloqa */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .contact-info {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .contact-item {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: #207cca;
+            color: white;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 10px 15px;
-            background: #f0f0f0;
-            border-radius: 18px;
-            align-self: flex-start;
-            margin-bottom: 10px;
-            max-width: 200px;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.2rem;
         }
         
-        .typing-dots {
-            display: flex;
-            gap: 3px;
+        .contact-text h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
         }
         
-        .typing-dots span {
-            width: 8px;
-            height: 8px;
+        .map {
+            height: 400px;
+            background-color: #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        /* Footer */
+        footer {
             background: #1e5799;
-            border-radius: 50%;
-            animation: typing 1.4s infinite ease-in-out;
+            color: white;
+            padding: 40px 0 20px;
         }
         
-        .typing-dots span:nth-child(1) { animation-delay: -0.32s; }
-        .typing-dots span:nth-child(2) { animation-delay: -0.16s; }
-        
-        @keyframes typing {
-            0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
-            40% { transform: scale(1); opacity: 1; }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
         }
         
-        .typing-text {
-            font-size: 0.8rem;
-            color: #666;
-        }
-
-        .status-indicator {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            margin-right: 8px;
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
         }
         
-        .status-online {
-            background: #4CAF50;
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background: #207cca;
         }
         
-        .status-offline {
-            background: #f44336;
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        
+        /* Responsive dizayn */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px;
+            }
+            
+            .hero {
+                height: 400px;
+                margin-top: 120px;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .message-content {
+                max-width: 85%;
+            }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="chat-container">
-        <div class="chat-header">
-            <h1>🤖 Shirin Energetika Bot</h1>
-            <p>
-                <span class="status-indicator status-online" id="statusIndicator"></span>
-                <span id="statusText">AI yordamchi faol</span>
-            </p>
-        </div>
-        
-        <div class="chat-messages" id="chatMessages">
-            <div class="message bot-message">
-                <p>Assalomu alaykum! Shirin Energetika Texnikumi AI yordamchisiman. Sizga qanday yordam bera olaman?</p>
+    <!-- Sarlavha va navigatsiya -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="/static/images/logo.png" alt="Shirin Energetika Texnikumi Logotipi" onerror="this.src='https://via.placeholder.com/60x60/1e5799/ffffff?text=SET'">
+                    <div class="logo-text">
+                        <h1>Shirin Energetika Texnikumi</h1>
+                        <p>Sirdaryo viloyati, Shirin shahri</p>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home" class="active">Bosh sahifa</a></li>
+                        <li><a href="#about">Texnikum haqida</a></li>
+                        <li><a href="#specialties">Mutaxassisliklar</a></li>
+                        <li><a href="#chatbot">AI Yordamchi</a></li>
+                        <li><a href="#news">Yangiliklar</a></li>
+                        <li><a href="#contact">Aloqa</a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
-        
-        <div class="suggestions">
-            <div class="suggestion" onclick="sendSuggestion('Dars jadvali')">📅 Dars jadvali</div>
-            <div class="suggestion" onclick="sendSuggestion('Mutaxassisliklar')">🎓 Mutaxassisliklar</div>
-            <div class="suggestion" onclick="sendSuggestion('O\\'qituvchilar')">👨‍🏫 O'qituvchilar</div>
-            <div class="suggestion" onclick="sendSuggestion('Manzil')">📍 Manzil</div>
+    </header>
+
+    <!-- Hero bo'limi -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Shirin Energetika Texnikumiga Xush Kelibsiz!</h2>
+                <p>Zamonaviy ta'lim texnologiyalari asosida malakali mutaxassislar tayyorlaymiz</p>
+                <a href="#specialties" class="btn">Mutaxassisliklar bilan tanishish</a>
+            </div>
         </div>
-        
-        <div class="chat-input">
-            <input type="text" id="messageInput" placeholder="Xabaringizni yozing..." onkeypress="handleKeyPress(event)">
-            <button onclick="sendMessage()">Yuborish</button>
+    </section>
+
+    <!-- Texnikum haqida -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Texnikum Haqida</h2>
+                <p>1995-yildan beri Sirdaryo viloyatida energiya sohasida malakali mutaxassislar tayyorlab kelmoqdamiz</p>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="/static/images/college-building.jpg" alt="Texnikum binosi" onerror="this.src='https://via.placeholder.com/600x400/1e5799/ffffff?text=SET+Binosi'">
+                </div>
+                <div class="about-text">
+                    <h3>Bizning maqsadimiz</h3>
+                    <p>Shirin Energetika Texnikumi O'zbekiston energetika sohasiga malakali mutaxassislar tayyorlash bo'yicha yetakchi o'rinda turadi. Biz zamonaviy ta'lim standartlari va amaliy yo'nalishlarga e'tibor qaratamiz.</p>
+                    <p>Texnikumda 8 ta mutaxassislik bo'yicha ta'lim beriladi. Har bir mutaxassislik zamonaviy laboratoriya va o'quv jihozlari bilan ta'minlangan.</p>
+                    <p>Bizning bitiruvchilarimiz respublika energetika korxonalarida, elektr stansiyalarida va sanoat korxonalarida muvaffaqiyatli ishlaydilar.</p>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Mutaxassisliklar -->
+    <section id="specialties" class="specialties">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mutaxassisliklar</h2>
+                <p>Texnikumda quyidagi mutaxassisliklar bo'yicha ta'lim beriladi</p>
+            </div>
+            <div class="specialties-grid">
+                <div class="specialty-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Elektr energetikasi</h3>
+                    <p>Elektr stansiyalari va tarmoqlarida ishlash uchun mutaxassislar tayyorlash</p>
+                </div>
+                <div class="specialty-card">
+                    <i class="fas fa-fire"></i>
+                    <h3>Issiqlik energetikasi</h3>
+                    <p>Issiqlik energetikasi tizimlarida ishlash bo'yicha mutaxassislar</p>
+                </div>
+                <div class="specialty-card">
+                    <i class="fas fa-solar-panel"></i>
+                    <h3>Qayta tiklanuvchi energiya</h3>
+                    <p>Quyosh, shamol va boshqa qayta tiklanuvchi energiya manbalari bo'yicha mutaxassislar</p>
+                </div>
+                <div class="specialty-card">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Axborot texnologiyalari</h3>
+                    <p>Kompyuter tizimlari va dasturiy ta'minotiga texnik xizmat ko'rsatish mutaxassislari</p>
+                </div>
+                <div class="specialty-card">
+                    <i class="fas fa-tools"></i>
+                    <h3>Elektr montyori</h3>
+                    <p>Elektr tarmoqlari va qurilmalarini o'rnatish va ta'mirlash bo'yicha mutaxassislar</p>
+                </div>
+                <div class="specialty-card">
+                    <i class="fas fa-wrench"></i>
+                    <h3>Payvandchi</h3>
+                    <p>Turli materiallarni payvandlash bo'yicha malakali mutaxassislar</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Chatbot -->
+    <section id="chatbot" class="chatbot-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>AI Yordamchi</h2>
+                <p>Texnikum haqida ma'lumot olish uchun AI yordamchidan foydalaning</p>
+            </div>
+            <div class="chatbot-container">
+                <div class="chat-header">
+                    <h3><i class="fas fa-robot"></i> Shirin Energetika AI Yordamchi</h3>
+                </div>
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message bot-message">
+                        <div class="message-content">
+                            Assalomu alaykum! Shirin Energetika Texnikumi AI yordamchisiman. Sizga qanday yordam bera olaman? Dars jadvallari, mutaxassisliklar, o'qituvchilar yoki boshqa ma'lumotlar kerak bo'lsa, so'rang!
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="userInput" placeholder="Xabaringizni yozing...">
+                    <button id="sendButton"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Yangiliklar -->
+    <section id="news" class="news">
+        <div class="container">
+            <div class="section-title">
+                <h2>Yangiliklar</h2>
+                <p>Texnikumdagi so'nggi voqealar va yangiliklar</p>
+            </div>
+            <div class="news-grid">
+                <div class="news-card">
+                    <div class="news-image" style="background-image: url('/static/images/news/news1.jpg');" onerror="this.style.backgroundImage='url(https://via.placeholder.com/400x200/1e5799/ffffff?text=Yangi+O%27quv+Yili)'"></div>
+                    <div class="news-content">
+                        <div class="news-date">1-sentyabr, 2024</div>
+                        <h3>Yangi o'quv yili tantanali ochildi</h3>
+                        <p>2024-2025 o'quv yili tantanali marosim bilan ochildi. Yangi talabalar qabul qilindi.</p>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-image" style="background-image: url('/static/images/news/news2.jpg');" onerror="this.style.backgroundImage='url(https://via.placeholder.com/400x200/207cca/ffffff?text=Olimpiada)'"></div>
+                    <div class="news-content">
+                        <div class="news-date">15-may, 2024</div>
+                        <h3>Respublika energetika olimpiadasida g'alaba</h3>
+                        <p>Talabalarimiz respublika energetika olimpiadasida birinchi o'rinni qo'lga kiritdi.</p>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-image" style="background-image: url('/static/images/news/news3.jpg');" onerror="this.style.backgroundImage='url(https://via.placeholder.com/400x200/1e5799/ffffff?text=Yangi+Laboratoriya)'"></div>
+                    <div class="news-content">
+                        <div class="news-date">20-mart, 2024</div>
+                        <h3>Yangi laboratoriya ochildi</h3>
+                        <p>Zamonaviy quvvatli energiya tizimlari laboratoriyasi ochildi.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Aloqa -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Aloqa</h2>
+                <p>Biz bilan bog'laning</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Manzil</h3>
+                            <p>Sirdaryo viloyati, Shirin shahri, Universitet ko'chasi, 12-uy</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Telefon</h3>
+                            <p>+998 67 123 45 67</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Email</h3>
+                            <p>info@shirinenergetika.uz</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Ish vaqti</h3>
+                            <p>Dushanba-Juma: 8:00-17:00<br>Shanba: 8:00-14:00<br>Yakshanba: dam olish kuni</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="map">
+                    <!-- Xarita joylashuvi -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3019.244385373722!2d68.66126731541506!3d40.81713297931817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38b1d6a6b8b8b8b8%3A0x8a2b5b2b2b2b2b2b!2sShirin%2C%20Uzbekistan!5e0!3m2!1sen!2s!4v1620000000000!5m2!1sen!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Shirin Energetika</h3>
+                    <p>Sirdaryo viloyatidagi eng yirik va nufuzli kasb-hunar ta'lim muassasasi.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Tez havolalar</h3>
+                    <ul>
+                        <li><a href="#home">Bosh sahifa</a></li>
+                        <li><a href="#about">Texnikum haqida</a></li>
+                        <li><a href="#specialties">Mutaxassisliklar</a></li>
+                        <li><a href="#chatbot">AI Yordamchi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Aloqa</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Shirin shahri, Sirdaryo</li>
+                        <li><i class="fas fa-phone"></i> +998 67 123 45 67</li>
+                        <li><i class="fas fa-envelope"></i> info@shirinenergetika.uz</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Ijtimoiy tarmoqlar</h3>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-telegram"></i> Telegram</a></li>
+                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Shirin Energetika Texnikumi. Barcha huquqlar himoyalangan.</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
-        // API URL - Render da avtomatik sozlanadi
-        const API_BASE_URL = window.location.origin;
-        const AI_API_URL = `${API_BASE_URL}/api/chat`;
-
-        // Status tekshirish
-        async function checkStatus() {
-            try {
-                const response = await fetch(`${API_BASE_URL}/health`);
-                const data = await response.json();
-                
-                const statusIndicator = document.getElementById('statusIndicator');
-                const statusText = document.getElementById('statusText');
-                
-                if (data.status === 'active') {
-                    statusIndicator.className = 'status-indicator status-online';
-                    statusText.textContent = 'AI yordamchi faol';
-                } else {
-                    statusIndicator.className = 'status-indicator status-offline';
-                    statusText.textContent = 'AI yordamchi faol emas';
-                }
-            } catch (error) {
-                console.error('Status tekshirishda xatolik:', error);
-                const statusIndicator = document.getElementById('statusIndicator');
-                const statusText = document.getElementById('statusText');
-                statusIndicator.className = 'status-indicator status-offline';
-                statusText.textContent = 'Serverga ulanishda muammo';
-            }
-        }
-
-        // Xabar qo'shish
-        function addMessage(text, isUser) {
-            const messagesDiv = document.getElementById('chatMessages');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
-            
-            // Matnni formatlash (yangi qatorlarni saqlab qolish)
-            const formattedText = text.replace(/\n/g, '<br>');
-            messageDiv.innerHTML = `<p>${formattedText}</p>`;
-            
-            messagesDiv.appendChild(messageDiv);
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
-        }
-
-        // Typing indikator
-        function showTypingIndicator() {
-            const chatBody = document.getElementById('chatMessages');
-            const typingDiv = document.createElement('div');
-            typingDiv.id = 'typingIndicator';
-            typingDiv.className = 'typing-indicator';
-            typingDiv.innerHTML = `
-                <div class="typing-dots">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <span class="typing-text">AI javob yozmoqda...</span>
-            `;
-            chatBody.appendChild(typingDiv);
-            chatBody.scrollTop = chatBody.scrollHeight;
-        }
-
-        function hideTypingIndicator() {
-            const typingIndicator = document.getElementById('typingIndicator');
-            if (typingIndicator) {
-                typingIndicator.remove();
-            }
-        }
-
-        // Xabar yuborish
-        async function sendMessage() {
-            const input = document.getElementById('messageInput');
-            const message = input.value.trim();
-            
-            if (message) {
-                addMessage(message, true);
-                input.value = '';
-                
-                showTypingIndicator();
-                
-                try {
-                    const response = await fetch(AI_API_URL, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            message: message
-                        })
-                    });
-                    
-                    const data = await response.json();
-                    hideTypingIndicator();
-                    
-                    if (data.status === 'success') {
-                        addMessage(data.response, false);
-                    } else {
-                        addMessage('❌ ' + data.response, false);
-                    }
-                    
-                } catch (error) {
-                    hideTypingIndicator();
-                    console.error('Chat error:', error);
-                    addMessage('❌ Internet aloqasi yoki serverda muammo. Iltimos, keyinroq urinib ko\'ring.', false);
-                }
-            }
-        }
-
-        // Taklif xabarlari
-        function sendSuggestion(text) {
-            document.getElementById('messageInput').value = text;
-            sendMessage();
-        }
-
-        // Enter bosganda yuborish
-        function handleKeyPress(event) {
-            if (event.key === 'Enter') {
-                sendMessage();
-            }
-        }
-
-        // Dastlabki sozlamalar
+        // Chatbot funksiyalari
         document.addEventListener('DOMContentLoaded', function() {
-            checkStatus();
+            const chatMessages = document.getElementById('chatMessages');
+            const userInput = document.getElementById('userInput');
+            const sendButton = document.getElementById('sendButton');
             
-            // Har 30 soniyada statusni tekshirish
-            setInterval(checkStatus, 30000);
+            // Xabarlar tarixi
+            let messageHistory = [];
             
-            // Foydalanuvchi diqqatini tortish
-            setTimeout(() => {
-                addMessage("💡 Masalan: 'AVM-2-24 dars jadvali', 'manzil', 'mutaxassisliklar' yoki 'oqituvchilar' deb yozing", false);
-            }, 2000);
+            // Xabarni yuborish funksiyasi
+            function sendMessage() {
+                const message = userInput.value.trim();
+                if (message === '') return;
+                
+                // Foydalanuvchi xabarini qo'shish
+                addMessage(message, 'user');
+                userInput.value = '';
+                
+                // API ga so'rov yuborish
+                fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: message })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        addMessage(data.response, 'bot');
+                    } else {
+                        addMessage('Kechirasiz, xatolik yuz berdi. Iltimos, qaytadan urinib ko\'ring.', 'bot');
+                    }
+                })
+                .catch(error => {
+                    console.error('Xatolik:', error);
+                    addMessage('Server bilan aloqa qilishda xatolik yuz berdi.', 'bot');
+                });
+            }
+            
+            // Xabarni chatga qo'shish
+            function addMessage(text, sender) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${sender}-message`;
+                
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'message-content';
+                
+                // Matnni formatlash (yangi qatorlarni saqlash)
+                const formattedText = text.replace(/\n/g, '<br>');
+                contentDiv.innerHTML = formattedText;
+                
+                messageDiv.appendChild(contentDiv);
+                chatMessages.appendChild(messageDiv);
+                
+                // Chatni pastga aylantirish
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                
+                // Xabarlar tarixiga qo'shish
+                messageHistory.push({ sender, text });
+            }
+            
+            // Tugmani bosish orqali xabar yuborish
+            sendButton.addEventListener('click', sendMessage);
+            
+            // Enter tugmasini bosish orqali xabar yuborish
+            userInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+            
+            // Navigatsiya linklarini faollashtirish
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Faol linkni o'zgartirish
+                    document.querySelectorAll('nav a').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    
+                    // Scroll qilish
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Scroll paytida faol navigatsiya linkini o'zgartirish
+            window.addEventListener('scroll', function() {
+                const sections = document.querySelectorAll('section');
+                const navLinks = document.querySelectorAll('nav a');
+                
+                let currentSection = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${currentSection}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
         });
     </script>
 </body>
