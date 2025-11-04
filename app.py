@@ -3,7 +3,7 @@ from flask_cors import CORS
 import random
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', static_url_path='/static')
 CORS(app)
 
 # Shirin Energetika AI Bot
@@ -11,13 +11,6 @@ class ShirinEnergetikaBot:
     def __init__(self):
         self.knowledge_base = {
             "dars_jadvallari": {
-                "avm2-24": {
-                    "dushanba": ["Ma'naviyat soati Xayitova B", "Web dasturlash Xidirov A 215", "Ingliz tili Xayitova B Tolibjonova M 403413", "Informatika Abloqulov A Shukurov A 203213"],
-                    "seshanba": ["Fizika Shobutayeva D 201", "CH.Q.B.T Yoldoshov F 206", "Kompyuter tizimlarining dasturiy ta'minoti Xusanov S 213", "Matematika Shukurova G 408"],
-                    "chorshanba": ["D.X.A Djumaboyeva D 206", "ONA TILI O'rinboyev F 404", "Axborot xavfsizligi Xusanov S 215", ""],
-                    "payshanba": ["Dasturlash asoslari Xidirov A 215", "Tarix Nematjonov I 407", "Biznes Asoslari Ashurov Usrolov J 409", ""],
-                    "juma": ["Web dasturlash Xidirov A", "Shaxsiy kompyuter arxitekturasi va ofis jihozlariga texnik xizmat ko'rsatish O'A Ablogulov A 214", "Ochoobi programma Shonazarov J 106", ""]
-                },
                 "avm1-25a": {
                     "dushanba": ["Ma'naviyat soati Abdulatipova S", "Rus tili Xayitboyeva M 102", "Ona tili O'rinboyev F 404", "Matematika Shukurova G 408"],
                     "seshanba": ["Tarbiya Djumaboyeva D 206", "Kompyuter arxitekturasi Ofis jihozlariga tex xiz Xusanov S 213", "Web dasturlash Xidirov A 215", "Ingliz tili Xayitboyeva R Abdulatipova S 414/411"],
@@ -27,13 +20,94 @@ class ShirinEnergetikaBot:
                 },
                 "avm1-25b": {
                     "dushanba": ["Ma'naviyat soati Xusanov S", "Ingliz tili Abdulatipova SAbdullaeva M 410411", "Kompyuter arxitekturasi va ofis jihozlariga teknik xizmat korsatish Shonazarov J106", "Jismonly Tarbiya Azimjonov S"],
-                    "seshanba": ["Ingliz tili Abdulatipova S Abdullaeva M 410/411", "Rus tili Xayitboyeva M 401", "Fizika Shobutayeva D 201", ""]
+                    "seshanba": ["Ingliz tili Abdulatipova S Abdullaeva M 410/411", "Rus tili Xayitboyeva M 401", "Fizika Shobutayeva D 201", ""],
+                    "chorshanba": ["TARIX Ne'majionov I 407", "INGLIZ TILI Abdulatipova S/Abdullayeva 410/411", "INFORMATIKA Abloquilov A/Shukurov A 213/203", ""],
+                    "payshanba": ["Kompyuter arkitekturasi Ofis jihozlariga teknik xizmat ko'rsatish O'A Xusanov S", "Matematika Shukurova G 408", "Informatika Abloqulovi Shukurov 203/213", "CH.Q.B.T Yoldoshov F 102"],
+                    "juma": ["Ona tili Sayfulaeva B 409", "Jismoniy tarbiya Azimjonov S", "Ingliz tili Abdulatipova Sabdullaeva M 410411", ""]
                 },
                 "avm1-25rus": {
-                    "dushanba": ["Ma'naviyat soati Xamidova R", "Ingliz tili Xamidova R Mamatqulova M 414315", "Tarix Nemajonov I 407", "Elektr stansiya uskunalarini ta mirlash Xudoyqulov X 204"]
+                    "dushanba": ["Ma'naviyat soati Xamidova R", "Ingliz tili Xamidova R Mamatqulova M 414315", "Tarix Nemajonov I 407", "Elektr stansiya uskunalarini ta mirlash Xudoyqulov X 204"],
+                    "seshanba": ["Matematika Shukurova G 408", "Arxitektura personal kompyuter Shonazarov J 106", "Ingliz tili Xamidova R Malpatsion o'q M 414/315", ""],
+                    "chorshanba": ["O'QUV AMALIYOT SHONAZAROV J 106", "O'QUV AMALIYOT SHONAZAROV J 106", "INGLIZ TILI Xayitova B /Tolibjonova M 403/413", ""],
+                    "payshanba": ["Inglis tili Yamidova Mamatqulova 414315", "Teknikaviy Chizmachilik Xudoyqulov X 204", "Ing tili Xayitova B/Tolibjonova M 403/413", "Matematika Shukurova G 408"],
+                    "juma": ["CH.Q.B.T Yoldoshov F 102", "Fizika Shobutayeva D 201", "Inglis tili Xamidova Mamatqulova 414315", ""]
                 },
                 "esu1-25": {
-                    "dushanba": ["Ma'naviyat soati Xidirov A", "Elektr stansiya uskunalarini ta mirlash Xudoyqulov X 204", "Mehnat Muhofazasi O'sarov Sh", "Ma'naviyat soati Mamatqulova M"]
+                    "dushanba": ["Ma'naviyat soati Xidirov A", "Elektr stansiya uskunalarini ta mirlash Xudoyqulov X 204", "Mehnat Muhofazasi O'sarov Sh", "Ma'naviyat soati Mamatqulova M"],
+                    "seshanba": ["Rus tili Xayitboyeva M 401", "Jismoniy tarbiya Azimjonov S", "Konstruksion materiallar Xudoyqulov X 204", ""],
+                    "chorshanba": ["CH.Q.B.T Yoldoshov F 102", "Konstruksion materialar Xudoyquilov X 204", "MATEMATIKA Shukurova G 408", ""],
+                    "payshanba": ["Elektr stansiya uskunalariini tamirlash Xudoyqulov X 204", "Ing tili Xayitova B/Tolibjonova M 403/413", "Elektr texnika Isrollov Z 206", ""],
+                    "juma": ["Ing tili Xayitova B/Tolibjonova M 403413", "Tarix Nematjonov I 407", "", ""]
+                },
+                "qtem1-25": {
+                    "dushanba": ["Qayta tiklanuvchi energiya manbalarini yig'ish o'matish va ishga tushirish ishlari O'A 206", "Qayta tiklanuvchi energiya manbalarini yig'ish o'matish va ishga tushirish ishlari O'A 206", "CH.Q.B.T Yo'ldoshov F", ""],
+                    "seshanba": ["Qayta tiklanuvchi energiya manbalarini yig'ish o'rnatish va ishga tushirish ishlari O'A", "Yig'ish o'rnatish va ishga tushirish ishlari O'A", "Ingliz tili Xayitova B Tolibjonova M 403/413", ""],
+                    "chorshanba": ["", "", "", ""],
+                    "payshanba": ["Qayta tiklanuvchi energiya manbalari qurilmalariini yig'ish o'rnatish va ishga tushirish O'A", "Metrologiya va Standardlashtirish va Sertifikatlashtirish Egamberdiyev S 107", "Inglis tili Yamidova Mamatqulova 414315", ""],
+                    "juma": ["Q.T.E.M.T.X.KO'R Toshtemirov A", "Bio va Geotermal energetika Xudoyqulov X 204", "Q.T.E.A.M.E.A.E.Q Isroilov Z 106", ""]
+                },
+                "em1-25": {
+                    "dushanba": ["Ma'naviyat soati Nematjonov I", "Ingliz tili Xayitova B Tolibjonova M 403413", "Elektr texnika Isrollov Z 206", "Rus tili Xayitboyeva M 102"],
+                    "seshanba": ["Amaliy chizma Xudoyqulov X 204", "Tarix Nematjonov I 407", "Informatika Ablogulov Shukurov 203/213", "Fizika Shobutayeva D 201"],
+                    "chorshanba": ["ONA TILI O'rinboyev F 404", "MEHNAT MUHOFAZASI O'sarov SH 102", "", ""],
+                    "payshanba": ["Elektr texnika materialar Isrollov Z 206", "Ing tili Abdulatipova S Mamatqulova M 411315", "Tarbiya Nematjonov I 407", ""],
+                    "juma": ["Inormatika Ablogulov A Shukurov A 213214", "Rus tili Xayitboyeva M 102", "Elektr stansiya elektr tarmoqlari Isroilov Z 206", ""]
+                },
+                "p1-25": {
+                    "dushanba": ["Ma'naviyat soati Isroilov J", "Elektr texnika Isrollov Z 206", "Texnikaviy Chizmachili Kudoyqulov X 204", "Ingliz tili Abdulatipova S Mamatqulova M 410315"],
+                    "seshanba": ["Rus tili Xayitboyeva M 401", "Amaliy chizma Xudoyqulov X 204", "", ""],
+                    "chorshanba": ["O'quv Amaliyot Matqosimov A 107", "", "MEHNAT MUHOFAZASI O'sarov SH 102", ""],
+                    "payshanba": ["Ona tili O'rinboyev F 404", "", "", ""],
+                    "juma": ["Avtomatik va yarim avtomatik payvandlash texnologiyasi Egamberdiyev S", "Matematika Shukurova G 408", "Tarix Nematjonov I 407", ""]
+                },
+                "at1-25": {
+                    "dushanba": ["Ma'naviyat soati Yangilov T", "Ona tili O'rinboyev F 404", "", "Ingliz tili Abdulatipova S Mamatqulova M 410315"],
+                    "seshanba": ["Tarix Nematjonov I 407", "Avtomobil tuzilishi Yangilov T 102", "Informatika Ablogulov Shukurov 203/213", "Ona tili O'rinboyev F 401"],
+                    "chorshanba": ["INGLIZ TILI Abdulatipova S Mamataudova M 410/315 FIZIKA Shobotayeva D 201", "", "", ""],
+                    "payshanba": ["Fizika Shobutaeva D 204", "", "", ""],
+                    "juma": ["Avtomobil shassisi texnik xizmat ko'rsatish O'A Qochqor G' 103", "", "", ""]
+                },
+                "avm2-24": {
+                    "dushanba": ["Ma'naviyat soati Xayitova B", "Web dasturlash Xidirov A 215", "Ingliz tili Xayitova B Tolibjonova M 403413", "Informatika Abloqulov A Shukurov A 203213"],
+                    "seshanba": ["Fizika Shobutayeva D 201", "CH.Q.B.T Yoldoshov F 206", "Kompyuter tizimlarining dasturiy ta'minoti Xusanov S 213", "Matematika Shukurova G 408"],
+                    "chorshanba": ["D.X.A Djumaboyeva D 206", "ONA TILI O'rinboyev F 404", "Axborot xavfsizligi Xusanov S 215", ""],
+                    "payshanba": ["Dasturlash asoslari Xidirov A 215", "Tarix Nematjonov I 407", "Biznes Asoslari Ashurov Usrolov J 409", ""],
+                    "juma": ["Web dasturlash Xidirov A", "Shaxsiy kompyuter arxitekturasi va ofis jihozlariga texnik xizmat ko'rsatish O'A Ablogulov A 214", "Ochoobi programma Shonazarov J 106", ""]
+                },
+                "avm2-24rus": {
+                    "dushanba": ["Ma'naviyat soati Shonazarov J", "Informatika Abloqulov A Shonazarov J 214106", "Rus tili Xayitboyeva M 202 2 korpus", "Ona tili O'rinboyev F 404"],
+                    "seshanba": ["Ingliz tili Xayitova B Tolibjonova M 403/413", "Biznes asoslari Isroilov J Ashurov S 409", "Dasturlash asoslari Shonazarov J 106", "Rus tili Xayitboyeva M 401"],
+                    "chorshanba": ["JISMONIY TARBIYA AZIMJONOV S", "MATEMATIKA Shukurova G 408", "TARIX Ne'majionov I 407", ""],
+                    "payshanba": ["D.H.A Djumaboyeva D 106", "Информатичоная Безопасност Shonazarov J 106", "Программа Обеспечение Shonazarov J 106", "Ona tili O'rinboyev F Sayfullaeva B 404/409"],
+                    "juma": ["Web programma Shonazarov J 106", "Web programma Shonazarov J 106", "Elektr stansiya uskunalarini ta mirlash Xudoyqulov X 204", "Matematika Shukurova G/408"]
+                },
+                "esu2-24": {
+                    "dushanba": ["Ma'naviyat soati Shukurova G", "Tarix Nemajonov I 407", "Informatika Abloqulov A Shukurov A 214213", "Tarix Nematjonov I 407"],
+                    "seshanba": ["Jismoniy tarbiya Azimjonov S", "Ona tili O'rinboyev F 404", "Biznes asoslari Isroilov J Ashurov S 409", ""],
+                    "chorshanba": ["O'QUV AMALYOT I Promqulov M 214", "INFORMATIKA Abloquilov A/Shukurov A 213/203", "BIZNES ASOSLARI ASHUROV ISROILOV 409", ""],
+                    "payshanba": ["Ing tili Xayitova B/Tolibjonova M 403/413", "Fizika Shobutayeva D 201", "Elektr stansiya uskunalariini ta'mirlash Xudoyqulov X 204", ""],
+                    "juma": ["Tarbiya Djumaboyeva D 204", "Elektr stansiya gozon jihozlarini tamirlash Xudoyqulov X 204", "Ch.Q.B.T Yoldoshov F 213", ""]
+                },
+                "em2-24": {
+                    "dushanba": ["Ma'naviyat soati Abloqulov A", "Matematika Shukurova G 408", "Biznes asoslari Ashurov S Isroilov J 409", ""],
+                    "seshanba": ["Biznes asoslari Isroilov J Ashurov S 409", "Matematika Shukurova G 408", "Ona tili O'rinboyev F 404", ""],
+                    "chorshanba": ["INGLIZ TILI Xayitova B /Tolibjonova M 403/413", "INGLIZ TILI Xayitova B /Tolibjonova M 403/413", "ONA TILI O'rinboyev F 404", ""],
+                    "payshanba": ["Elektr stansiya va elekr tarmoqlariga teknik xizmat ko'rsatish O'A Jamolov S", "", "", ""],
+                    "juma": ["Elektr stansiya va elektr tarmoqlari Isroilov Z 206", "Bino inshotlarning elektr taminoti Isroilov Z 206", "Rus tili Xayitboyeva M 102", ""]
+                },
+                "p2-24": {
+                    "dushanba": ["Ma'naviyat soati O'rinboyev F", "Plastik quvurlar pay vandlash texnologiyasi Egamberdiyev S 107", "Matematika Shukurova G 408", ""],
+                    "seshanba": ["Plastik quvurlar payvandlash texnologiyasi O'A Egamberdiyev S 107", "Fizika Shobutayeva D 201", "Avtomobil uzatmalar qutisiga texnik xizmat ko'rsatish Yangilov T 102", ""],
+                    "chorshanba": ["BIZNES ASOSLARI ASHUROV ISROILOV 409", "", "JISMNONIY TARBIYA AZIMJONOV S", ""],
+                    "payshanba": ["Informatika Abloqulovi Shukurov 203/213", "Ona tili O'rinboyev F 404", "Payvand birikmalari defektopiyasi Egamberdiyev S 107", ""],
+                    "juma": ["Tarix Nematjonov I 407", "Plastik quvurlar payvandlash texologiyasi Egamberdiyev S 107", "Jismoniy Tarbiya Azimjonov S", ""]
+                },
+                "at2-24": {
+                    "dushanba": ["Ma'naviyat soati Shukurov Alish", "Biznes asoslarj Isroilov J Ashurov S 409", "CH.Q.B.T Yoldshov F 102", "Ingliz tili Xayitova B Tolibjonova"],
+                    "seshanba": ["Informatika Ablogulov Shukurov 203/213", "Matematika Shukurova G 408", "Ona tili O'rinboyev F 401", ""],
+                    "chorshanba": ["AVTOMOIBILLARNI YOQILG'I BILAN TAMINLASH O'A Xolnazarov G' 103", "", "", ""],
+                    "payshanba": ["Informatika Abloqulovi Shukurov 203/213", "Ona tili O'rinboyev F 404", "Matematika Shukurova G 408", ""],
+                    "juma": ["Ona tili O'rinboyev F 404", "Ona tili O'rinboyev F 404", "", ""]
                 }
             },
             "umumiy": {
