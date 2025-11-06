@@ -1615,15 +1615,13 @@
                 chatInput.value = '';
                 
                 // Railway backend ga so'rov yuborish
-                // Test AI chat
-        fetch('https://shirin-energetika-bot1.madiyor771.repl.co/chat', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({message: 'Salom'})
-        })
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error('Xatolik:', error));
+                sendToAIBot(message).then(reply => {
+                    addMessage(reply);
+                }).catch(error => {
+                    addMessage("Kechirasiz, texnik xatolik yuz berdi.");
+                });
+            }
+        }
 
         // DOM yuklanganda barcha funksiyalarni ishga tushirish
         document.addEventListener('DOMContentLoaded', function() {
