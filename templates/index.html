@@ -90,7 +90,7 @@
         
         /* Hero bo'limi */
         .hero {
-            background: linear-gradient(135deg, #1e5799, #207cca);
+            background: url('images/hero-bg.jpg') no-repeat center center/cover;
             height: 500px;
             display: flex;
             align-items: center;
@@ -98,6 +98,16 @@
             text-align: center;
             position: relative;
             margin-top: 80px;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
         }
         
         .hero-content {
@@ -271,13 +281,17 @@
         .card-img {
             height: 200px;
             overflow: hidden;
-            background: linear-gradient(135deg, #1e5799, #207cca);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            font-weight: bold;
+        }
+        
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .card:hover .card-img img {
+            transform: scale(1.1);
         }
         
         .card-content {
@@ -311,13 +325,12 @@
         .news-img {
             height: 200px;
             overflow: hidden;
-            background: linear-gradient(135deg, #1e5799, #207cca);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.1rem;
-            font-weight: bold;
+        }
+        
+        .news-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         
         .news-content {
@@ -606,9 +619,7 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <div class="card-img" style="height: 60px; width: 60px; border-radius: 8px; margin-right: 15px;">
-                        SET
-                    </div>
+                    <img src="images/logo.png" alt="Shirin Energetika Texnikumi Logotipi">
                     <div class="logo-text">
                         <h1>Shirin Energetika Texnikumi</h1>
                         <p>Sirdaryo viloyati, Shirin shahri</p>
@@ -649,9 +660,7 @@
             </div>
             <div class="about-content">
                 <div class="about-image">
-                    <div class="card-img" style="height: 400px;">
-                        KOLLEJ BINOSI
-                    </div>
+                    <img src="images/college-building.jpg" alt="Kollej binosi">
                 </div>
                 <div class="about-text">
                     <h3>Bizning Tarix va Maqsadlarimiz</h3>
@@ -925,18 +934,64 @@
 
         // ==================== MA'LUMOTLAR ====================
         const studentsData = [
-            {name: "Aliyev Aziz", group: "AVM-1-25A", specialty: "Axborot vositalari va mashinalari", birthDate: "2008-03-15", address: "Shirin shahri, Yangiobod tumani", phone: "+998 90 123 45 67", email: "aziz.aliyev@example.uz", achievements: ["2024-yil 'Eng yaxshi dasturchi' tanlovi g'olibi", "Matematika olimpiadasi 2-o'rin"]},
-            {name: "Hasanova Malika", group: "EM-1-25", specialty: "Elektr montyori", birthDate: "2007-11-22", address: "Shirin shahri, Markaziy tuman", phone: "+998 91 234 56 78", email: "malika.hasanova@example.uz", achievements: ["Elektr texnikasi bo'yicha respublika tanlovi ishtirokchisi", "Yilning eng faol o'quvchisi"]}
+            {
+                name: "Aliyev Aziz", 
+                group: "AVM-1-25A", 
+                specialty: "Axborot vositalari va mashinalari", 
+                birthDate: "2008-03-15", 
+                address: "Shirin shahri, Yangiobod tumani", 
+                phone: "+998 90 123 45 67", 
+                email: "aziz.aliyev@example.uz", 
+                achievements: ["2024-yil 'Eng yaxshi dasturchi' tanlovi g'olibi", "Matematika olimpiadasi 2-o'rin"],
+                image: "images/student5.jpg"
+            },
+            {
+                name: "Hasanova Malika", 
+                group: "EM-1-25", 
+                specialty: "Elektr montyori", 
+                birthDate: "2007-11-22", 
+                address: "Shirin shahri, Markaziy tuman", 
+                phone: "+998 91 234 56 78", 
+                email: "malika.hasanova@example.uz", 
+                achievements: ["Elektr texnikasi bo'yicha respublika tanlovi ishtirokchisi", "Yilning eng faol o'quvchisi"],
+                image: "images/cafeteria.jpg"
+            }
         ];
 
         const teachersData = [
-            {name: "Rashidov Anvar", position: "Direktor", specialty: "Energetika", experience: "25 yil", education: "Toshkent Energetika Universiteti", subjects: ["Energetika asoslari", "Elektr stansiyalari"]},
-            {name: "Ismailova Gulnora", position: "O'qituvchi", specialty: "Elektr texnikasi", experience: "15 yil", education: "Toshkent Texnika Universiteti", subjects: ["Elektr texnikasi", "Elektr mashinalari"]}
+            {
+                name: "Rashidov Anvar", 
+                position: "Direktor", 
+                specialty: "Energetika", 
+                experience: "25 yil", 
+                education: "Toshkent Energetika Universiteti", 
+                subjects: ["Energetika asoslari", "Elektr stansiyalari"],
+                image: "images/teacher1.jpg"
+            },
+            {
+                name: "Ismailova Gulnora", 
+                position: "O'qituvchi", 
+                specialty: "Elektr texnikasi", 
+                experience: "15 yil", 
+                education: "Toshkent Texnika Universiteti", 
+                subjects: ["Elektr texnikasi", "Elektr mashinalari"],
+                image: "images/teacher4.jpg"
+            }
         ];
 
         const newsData = [
-            {title: "Yangi o'quv yili boshlanishi", date: "2025-09-01", content: "2025-2026 o'quv yili tantanali marosim bilan boshlanadi. Barcha o'quvchilar va o'qituvchilarni 1-sentabr kuni soat 9:00 da kollej binosida kutamiz."},
-            {title: "Energetika olimpiadasi", date: "2025-10-15", content: "Respublika energetika olimpiadasida bizning kollej talabalari birinchi o'rinni qo'lga kiritdi. G'oliblarni qalbimizdan tabriklaymiz!"}
+            {
+                title: "Yangi o'quv yili boshlanishi", 
+                date: "2025-09-01", 
+                content: "2025-2026 o'quv yili tantanali marosim bilan boshlanadi. Barcha o'quvchilar va o'qituvchilarni 1-sentabr kuni soat 9:00 da kollej binosida kutamiz.",
+                image: "images/college-building.jpg"
+            },
+            {
+                title: "Energetika olimpiadasi", 
+                date: "2025-10-15", 
+                content: "Respublika energetika olimpiadasida bizning kollej talabalari birinchi o'rinni qo'lga kiritdi. G'oliblarni qalbimizdan tabriklaymiz!",
+                image: "images/cafeteria.jpg"
+            }
         ];
 
         // ==================== OPENAI AI CHAT FUNCTIONS ====================
@@ -1047,11 +1102,13 @@
         function displayStudents() {
             const container = document.getElementById('students-container');
             container.innerHTML = '';
-            studentsData.forEach((student, index) => {
+            studentsData.forEach((student) => {
                 const card = document.createElement('div');
                 card.className = 'card';
                 card.innerHTML = `
-                    <div class="card-img">O'QUVCHI ${index + 1}</div>
+                    <div class="card-img">
+                        <img src="${student.image}" alt="${student.name}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWU1Nzk5Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+8J+QlyDwn5GgIPCfkY88L3RleHQ+PC9zdmc+'">
+                    </div>
                     <div class="card-content">
                         <h3>${student.name}</h3>
                         <p><strong>Guruh:</strong> ${student.group}</p>
@@ -1067,11 +1124,13 @@
         function displayTeachers() {
             const container = document.getElementById('teachers-container');
             container.innerHTML = '';
-            teachersData.forEach((teacher, index) => {
+            teachersData.forEach((teacher) => {
                 const card = document.createElement('div');
                 card.className = 'card';
                 card.innerHTML = `
-                    <div class="card-img">O'QITUVCHI ${index + 1}</div>
+                    <div class="card-img">
+                        <img src="${teacher.image}" alt="${teacher.name}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWU1Nzk5Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+8J+SlSDwn5GqIPCfkY88L3RleHQ+PC9zdmc+'">
+                    </div>
                     <div class="card-content">
                         <h3>${teacher.name}</h3>
                         <p><strong>Lavozim:</strong> ${teacher.position}</p>
@@ -1087,11 +1146,13 @@
         function displayNews() {
             const container = document.getElementById('news-container');
             container.innerHTML = '';
-            newsData.forEach((news, index) => {
+            newsData.forEach((news) => {
                 const newsItem = document.createElement('div');
                 newsItem.className = 'news-item';
                 newsItem.innerHTML = `
-                    <div class="news-img">YANGILIK ${index + 1}</div>
+                    <div class="news-img">
+                        <img src="${news.image}" alt="${news.title}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWU1Nzk5Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+8J+QlyDwn5GgIPCfkY88L3RleHQ+PC9zdmc+'">
+                    </div>
                     <div class="news-content">
                         <div class="news-date">${formatDate(news.date)}</div>
                         <h3>${news.title}</h3>
