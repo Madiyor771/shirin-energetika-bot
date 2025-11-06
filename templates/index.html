@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shirin Energetika Texnikumi</title>
     <style>
-        /* Barcha avvalgi CSS kodlari saqlangan */
+        /* Umumiy uslublar */
         * {
             margin: 0;
             padding: 0;
@@ -52,7 +52,6 @@
         .logo img {
             height: 60px;
             margin-right: 15px;
-            border-radius: 8px;
         }
         
         .logo-text h1 {
@@ -90,7 +89,7 @@
         
         /* Hero bo'limi */
         .hero {
-            background: linear-gradient(135deg, rgba(30, 87, 153, 0.8), rgba(32, 124, 202, 0.8)), url('/static/images/hero-bg.jpg') no-repeat center center/cover;
+            background: url('https://via.placeholder.com/1200x500/1e5799/ffffff?text=Shirin+Energetika+Texnikumi') no-repeat center center/cover;
             height: 500px;
             display: flex;
             align-items: center;
@@ -98,6 +97,16 @@
             text-align: center;
             position: relative;
             margin-top: 80px;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
         }
         
         .hero-content {
@@ -178,162 +187,140 @@
             margin-bottom: 15px;
         }
         
-        /* Mutaxassisliklar */
-        .specialties {
-            background-color: #f9f9f9;
-        }
-        
-        .specialties-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        
-        .specialty-card {
-            background: white;
-            border-radius: 8px;
-            padding: 25px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-            text-align: center;
-        }
-        
-        .specialty-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .specialty-card i {
-            font-size: 2.5rem;
-            color: #207cca;
-            margin-bottom: 15px;
-        }
-        
-        .specialty-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-        
-        /* Chatbot bo'limi */
-        .chatbot-section {
-            background-color: #1e5799;
-            color: white;
-        }
-        
-        .chatbot-section .section-title h2 {
-            color: white;
-        }
-        
-        .chatbot-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            overflow: hidden;
-        }
-        
-        .chat-header {
-            background: #207cca;
-            color: white;
-            padding: 15px 20px;
-            text-align: center;
-        }
-        
-        .chat-messages {
-            height: 400px;
-            overflow-y: auto;
-            padding: 20px;
-            background: #f9f9f9;
-        }
-        
-        .message {
-            margin-bottom: 15px;
+        /* Dars jadvali */
+        .timetable-controls {
             display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         
-        .user-message {
-            justify-content: flex-end;
-        }
-        
-        .bot-message {
-            justify-content: flex-start;
-        }
-        
-        .message-content {
-            max-width: 70%;
-            padding: 12px 15px;
-            border-radius: 18px;
-            font-size: 0.95rem;
-            line-height: 1.4;
-        }
-        
-        .user-message .message-content {
-            background: #207cca;
-            color: white;
-            border-bottom-right-radius: 5px;
-        }
-        
-        .bot-message .message-content {
-            background: white;
-            color: #333;
-            border: 1px solid #e0e0e0;
-            border-bottom-left-radius: 5px;
-        }
-        
-        .chat-input {
-            display: flex;
-            padding: 15px;
-            background: white;
-            border-top: 1px solid #e0e0e0;
-        }
-        
-        .chat-input input {
-            flex: 1;
-            padding: 12px 15px;
-            border: 1px solid #e0e0e0;
-            border-radius: 25px;
-            outline: none;
+        .timetable-controls select {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
             font-size: 1rem;
         }
         
-        .chat-input button {
-            background: #207cca;
+        .timetable {
+            overflow-x: auto;
+            margin-top: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #1e5799;
             color: white;
-            border: none;
-            border-radius: 25px;
-            padding: 0 20px;
-            margin-left: 10px;
-            cursor: pointer;
-            transition: background 0.3s;
+            text-align: center;
         }
         
-        .chat-input button:hover {
-            background: #1e5799;
+        .time-column {
+            background-color: #f0f8ff;
+            font-weight: bold;
+            text-align: center;
+            width: 80px;
         }
         
-        /* Yangiliklar */
-        .news-grid {
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        tr:hover {
+            background-color: #e9f7fe;
+        }
+        
+        .day-header {
+            background-color: #2c6bb0;
+            text-align: center;
+        }
+        
+        /* O'quvchilar va o'qituvchilar */
+        .cards-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
+            gap: 30px;
         }
         
-        .news-card {
+        .card {
             background: white;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             transition: transform 0.3s;
         }
         
-        .news-card:hover {
+        .card:hover {
             transform: translateY(-5px);
         }
         
-        .news-image {
-            height: 180px;
-            background-size: cover;
-            background-position: center;
+        .card-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .card:hover .card-img img {
+            transform: scale(1.1);
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .card-content h3 {
+            margin-bottom: 10px;
+            color: #1e5799;
+        }
+        
+        .card-content p {
+            margin-bottom: 5px;
+            color: #666;
+        }
+        
+        /* Yangiliklar */
+        .news-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .news-item {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .news-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .news-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         
         .news-content {
@@ -341,58 +328,171 @@
         }
         
         .news-date {
-            font-size: 0.85rem;
-            color: #666;
+            color: #888;
+            font-size: 0.9rem;
             margin-bottom: 10px;
         }
         
         .news-content h3 {
-            font-size: 1.2rem;
             margin-bottom: 10px;
+            color: #1e5799;
         }
         
         /* Aloqa */
-        .contact-content {
+        .contact-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px;
         }
         
-        .contact-info {
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        .contact-info h3 {
+            margin-bottom: 20px;
+            color: #1e5799;
         }
         
         .contact-item {
             display: flex;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         
         .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: #207cca;
+            width: 40px;
+            height: 40px;
+            background: #1e5799;
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-right: 15px;
-            font-size: 1.2rem;
         }
         
-        .contact-text h3 {
-            font-size: 1.1rem;
-            margin-bottom: 5px;
+        /* AI Chat Support */
+        .ai-chat-support {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
         }
         
-        .map {
-            height: 400px;
-            background-color: #ddd;
-            border-radius: 8px;
+        .ai-chat-btn {
+            background: #1e5799;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 25px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        
+        .ai-chat-btn:hover {
+            background: #207cca;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+        
+        .ai-chat-btn i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        /* Chat Modal */
+        .chat-modal {
+            display: none;
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            z-index: 1001;
+            flex-direction: column;
             overflow: hidden;
+        }
+        
+        .chat-header {
+            background: #1e5799;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chat-header h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+        
+        .close-chat {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        .chat-body {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .chat-message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .bot-message {
+            background: #f0f0f0;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .user-message {
+            background: #1e5799;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .chat-input {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+        }
+        
+        .send-btn {
+            background: #1e5799;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         /* Footer */
@@ -404,52 +504,54 @@
         
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
             margin-bottom: 30px;
         }
         
-        .footer-column h3 {
-            font-size: 1.2rem;
+        .footer-section h3 {
             margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
+            font-size: 1.2rem;
         }
         
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 40px;
-            height: 2px;
-            background: #207cca;
-        }
-        
-        .footer-column ul {
-            list-style: none;
-        }
-        
-        .footer-column ul li {
+        .footer-section p, 
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
             margin-bottom: 10px;
-        }
-        
-        .footer-column ul li a {
-            color: #ccc;
+            display: block;
             text-decoration: none;
-            transition: color 0.3s;
         }
         
-        .footer-column ul li a:hover {
+        .footer-section a:hover {
             color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: rgba(255,255,255,0.2);
         }
         
         .copyright {
             text-align: center;
             padding-top: 20px;
             border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.7);
             font-size: 0.9rem;
-            color: #ccc;
         }
         
         /* Responsive dizayn */
@@ -460,18 +562,13 @@
             }
             
             nav ul {
-                margin-top: 15px;
+                margin-top: 20px;
                 flex-wrap: wrap;
                 justify-content: center;
             }
             
             nav ul li {
-                margin: 5px;
-            }
-            
-            .hero {
-                height: 400px;
-                margin-top: 120px;
+                margin: 5px 10px;
             }
             
             .hero h2 {
@@ -479,16 +576,28 @@
             }
             
             .about-content,
-            .contact-content {
+            .contact-container {
                 grid-template-columns: 1fr;
             }
             
-            .message-content {
-                max-width: 85%;
+            .timetable-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .timetable-controls select {
+                margin: 5px 0;
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .chat-modal {
+                width: 90%;
+                right: 5%;
+                height: 70%;
             }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <!-- Sarlavha va navigatsiya -->
@@ -496,7 +605,7 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <img src="/static/images/logo.png" alt="Shirin Energetika Texnikumi Logotipi" onerror="this.src='https://via.placeholder.com/60x60/1e5799/ffffff?text=SET'">
+                    <img src="https://via.placeholder.com/60/ffffff/1e5799?text=SET" alt="Shirin Energetika Texnikumi Logotipi">
                     <div class="logo-text">
                         <h1>Shirin Energetika Texnikumi</h1>
                         <p>Sirdaryo viloyati, Shirin shahri</p>
@@ -505,9 +614,10 @@
                 <nav>
                     <ul>
                         <li><a href="#home" class="active">Bosh sahifa</a></li>
-                        <li><a href="#about">Texnikum haqida</a></li>
-                        <li><a href="#specialties">Mutaxassisliklar</a></li>
-                        <li><a href="#chatbot">AI Yordamchi</a></li>
+                        <li><a href="#about">Kollej haqida</a></li>
+                        <li><a href="#timetable">Dars jadvali</a></li>
+                        <li><a href="#students">O'quvchilar</a></li>
+                        <li><a href="#teachers">O'qituvchilar</a></li>
                         <li><a href="#news">Yangiliklar</a></li>
                         <li><a href="#contact">Aloqa</a></li>
                     </ul>
@@ -517,352 +627,1085 @@
     </header>
 
     <!-- Hero bo'limi -->
-    <section id="home" class="hero">
+    <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
                 <h2>Shirin Energetika Texnikumiga Xush Kelibsiz!</h2>
-                <p>Zamonaviy ta'lim texnologiyalari asosida malakali mutaxassislar tayyorlaymiz</p>
-                <a href="#specialties" class="btn">Mutaxassisliklar bilan tanishish</a>
+                <p>Bizning texnikumda zamonaviy ta'lim texnologiyalari asosida malakali mutaxassislar tayyorlanadi</p>
+                <a href="#about" class="btn">Batafsil ma'lumot</a>
             </div>
         </div>
     </section>
 
-    <!-- Texnikum haqida -->
-    <section id="about" class="about">
+    <!-- Kollej haqida -->
+    <section id="about">
         <div class="container">
             <div class="section-title">
-                <h2>Texnikum Haqida</h2>
-                <p>1995-yildan beri Sirdaryo viloyatida energiya sohasida malakali mutaxassislar tayyorlab kelmoqdamiz</p>
+                <h2>Kollej Haqida</h2>
+                <p>Shirin Energetika Texnikumi - Sirdaryo viloyatidagi eng yirik va nufuzli kasb-hunar ta'lim muassasalaridan biri</p>
             </div>
             <div class="about-content">
                 <div class="about-image">
-                    <img src="/static/images/college-building.jpg" alt="Texnikum binosi" onerror="this.src='https://via.placeholder.com/600x400/1e5799/ffffff?text=SET+Binosi'">
+                    <img src="https://via.placeholder.com/600x400/1e5799/ffffff?text=Kollej+Binosi" alt="Kollej binosi">
                 </div>
                 <div class="about-text">
-                    <h3>Bizning maqsadimiz</h3>
-                    <p>Shirin Energetika Texnikumi O'zbekiston energetika sohasiga malakali mutaxassislar tayyorlash bo'yicha yetakchi o'rinda turadi. Biz zamonaviy ta'lim standartlari va amaliy yo'nalishlarga e'tibor qaratamiz.</p>
-                    <p>Texnikumda 8 ta mutaxassislik bo'yicha ta'lim beriladi. Har bir mutaxassislik zamonaviy laboratoriya va o'quv jihozlari bilan ta'minlangan.</p>
-                    <p>Bizning bitiruvchilarimiz respublika energetika korxonalarida, elektr stansiyalarida va sanoat korxonalarida muvaffaqiyatli ishlaydilar.</p>
+                    <h3>Bizning Tarix va Maqsadlarimiz</h3>
+                    <p>Shirin Energetika Texnikumi 1995-yilda tashkil etilgan bo'lib, o'tgan yillar davomida minglab malakali mutaxassislarni tayyorlab, mamlakatimiz energetika sohasiga katta hissa qo'shdi.</p>
+                    <p>Bizning maqsadimiz - zamonaviy bilim va texnologiyalar asosida malakali, ijodiy va mas'uliyatli mutaxassislar tayyorlash, ularni ish bilan ta'minlash va ularning kasbiy rivojlanishini qo'llab-quvvatlash.</p>
+                    <p>Texnikumda quyidagi yo'nalishlar bo'yicha ta'lim beriladi:</p>
+                    <ul>
+                        <li>Elektr energetikasi</li>
+                        <li>Issiqlik energetikasi</li>
+                        <li>Energetika tarmoqlari va tizimlari</li>
+                        <li>Qayta tiklanuvchi energiya manbalari</li>
+                        <li>Axborot vositalari va mashinalariga texnik xizmat ko'rsatish operatori</li>
+                        <li>Elektr montyori</li>
+                        <li>Payvandchi</li>
+                        <li>Avtomobil transporti</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Mutaxassisliklar -->
-    <section id="specialties" class="specialties">
+    <!-- Dars jadvali -->
+    <section id="timetable">
         <div class="container">
             <div class="section-title">
-                <h2>Mutaxassisliklar</h2>
-                <p>Texnikumda quyidagi mutaxassisliklar bo'yicha ta'lim beriladi</p>
+                <h2>Dars Jadvali</h2>
+                <p>Guruhlar bo'yicha dars jadvalini ko'rib chiqing</p>
             </div>
-            <div class="specialties-grid">
-                <div class="specialty-card">
-                    <i class="fas fa-bolt"></i>
-                    <h3>Elektr energetikasi</h3>
-                    <p>Elektr stansiyalari va tarmoqlarida ishlash uchun mutaxassislar tayyorlash</p>
-                </div>
-                <div class="specialty-card">
-                    <i class="fas fa-fire"></i>
-                    <h3>Issiqlik energetikasi</h3>
-                    <p>Issiqlik energetikasi tizimlarida ishlash bo'yicha mutaxassislar</p>
-                </div>
-                <div class="specialty-card">
-                    <i class="fas fa-solar-panel"></i>
-                    <h3>Qayta tiklanuvchi energiya</h3>
-                    <p>Quyosh, shamol va boshqa qayta tiklanuvchi energiya manbalari bo'yicha mutaxassislar</p>
-                </div>
-                <div class="specialty-card">
-                    <i class="fas fa-laptop-code"></i>
-                    <h3>Axborot texnologiyalari</h3>
-                    <p>Kompyuter tizimlari va dasturiy ta'minotiga texnik xizmat ko'rsatish mutaxassislari</p>
-                </div>
-                <div class="specialty-card">
-                    <i class="fas fa-tools"></i>
-                    <h3>Elektr montyori</h3>
-                    <p>Elektr tarmoqlari va qurilmalarini o'rnatish va ta'mirlash bo'yicha mutaxassislar</p>
-                </div>
-                <div class="specialty-card">
-                    <i class="fas fa-wrench"></i>
-                    <h3>Payvandchi</h3>
-                    <p>Turli materiallarni payvandlash bo'yicha malakali mutaxassislar</p>
-                </div>
+            <div class="timetable-controls">
+                <select id="group-select">
+                    <option value="">Guruhni tanlang</option>
+                    <option value="avm1-25a">AVM-1-25 "A"</option>
+                    <option value="avm1-25b">AVM-1-25 "B"</option>
+                    <option value="avm1-25rus">AVM-1-25 "Rus"</option>
+                    <option value="esu1-25">ESU-1-25</option>
+                    <option value="qtem1-25">Q.T.E.M-1-25</option>
+                    <option value="em1-25">EM-1-25</option>
+                    <option value="p1-25">P-1-25</option>
+                    <option value="at1-25">AT-1-25</option>
+                    <option value="avm2-24" selected>AVM-2-24</option>
+                    <option value="avm2-24rus">AVM-2-24 "Rus"</option>
+                    <option value="esu2-24">ESU-2-24</option>
+                    <option value="em2-24">EM-2-24</option>
+                    <option value="p2-24">P-2-24</option>
+                    <option value="at2-24">AT-2-24</option>
+                </select>
+                <select id="day-select">
+                    <option value="all" selected>Barcha kunlar</option>
+                    <option value="monday">Dushanba</option>
+                    <option value="tuesday">Seshanba</option>
+                    <option value="wednesday">Chorshanba</option>
+                    <option value="thursday">Payshanba</option>
+                    <option value="friday">Juma</option>
+                </select>
+            </div>
+            <div class="timetable">
+                <table id="schedule-table">
+                    <thead>
+                        <tr>
+                            <th class="time-column">Dars</th>
+                            <th class="day-header">Dushanba</th>
+                            <th class="day-header">Seshanba</th>
+                            <th class="day-header">Chorshanba</th>
+                            <th class="day-header">Payshanba</th>
+                            <th class="day-header">Juma</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- JavaScript orqali to'ldiriladi -->
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
 
-    <!-- AI Chatbot -->
-    <section id="chatbot" class="chatbot-section">
+    <!-- O'quvchilar -->
+    <section id="students">
         <div class="container">
             <div class="section-title">
-                <h2>AI Yordamchi</h2>
-                <p>Texnikum haqida ma'lumot olish uchun AI yordamchidan foydalaning</p>
+                <h2>O'quvchilar</h2>
+                <p>Bizning faol va istiqbolli o'quvchilarimiz</p>
             </div>
-            <div class="chatbot-container">
-                <div class="chat-header">
-                    <h3><i class="fas fa-robot"></i> Shirin Energetika AI Yordamchi</h3>
-                </div>
-                <div class="chat-messages" id="chatMessages">
-                    <div class="message bot-message">
-                        <div class="message-content">
-                            Assalomu alaykum! Shirin Energetika Texnikumi AI yordamchisiman. Sizga qanday yordam bera olaman? Dars jadvallari, mutaxassisliklar, o'qituvchilar yoki boshqa ma'lumotlar kerak bo'lsa, so'rang!
-                        </div>
-                    </div>
-                </div>
-                <div class="chat-input">
-                    <input type="text" id="userInput" placeholder="Xabaringizni yozing...">
-                    <button id="sendButton"><i class="fas fa-paper-plane"></i></button>
-                </div>
+            <div class="cards-container" id="students-container">
+                <!-- JavaScript orqali to'ldiriladi -->
+            </div>
+        </div>
+    </section>
+
+    <!-- O'qituvchilar -->
+    <section id="teachers">
+        <div class="container">
+            <div class="section-title">
+                <h2>O'qituvchilar</h2>
+                <p>Bizning malakali va tajribali o'qituvchilarimiz</p>
+            </div>
+            <div class="cards-container" id="teachers-container">
+                <!-- JavaScript orqali to'ldiriladi -->
             </div>
         </div>
     </section>
 
     <!-- Yangiliklar -->
-    <section id="news" class="news">
+    <section id="news">
         <div class="container">
             <div class="section-title">
                 <h2>Yangiliklar</h2>
-                <p>Texnikumdagi so'nggi voqealar va yangiliklar</p>
+                <p>Kollej hayotidagi eng so'nggi yangiliklar</p>
             </div>
-            <div class="news-grid">
-                <div class="news-card">
-                    <div class="news-image" style="background-image: url('/static/images/news/news1.jpg');" onerror="this.style.backgroundImage='url(https://via.placeholder.com/400x200/1e5799/ffffff?text=Yangi+O%27quv+Yili)'"></div>
-                    <div class="news-content">
-                        <div class="news-date">1-sentyabr, 2024</div>
-                        <h3>Yangi o'quv yili tantanali ochildi</h3>
-                        <p>2024-2025 o'quv yili tantanali marosim bilan ochildi. Yangi talabalar qabul qilindi.</p>
-                    </div>
-                </div>
-                <div class="news-card">
-                    <div class="news-image" style="background-image: url('/static/images/news/news2.jpg');" onerror="this.style.backgroundImage='url(https://via.placeholder.com/400x200/207cca/ffffff?text=Olimpiada)'"></div>
-                    <div class="news-content">
-                        <div class="news-date">15-may, 2024</div>
-                        <h3>Respublika energetika olimpiadasida g'alaba</h3>
-                        <p>Talabalarimiz respublika energetika olimpiadasida birinchi o'rinni qo'lga kiritdi.</p>
-                    </div>
-                </div>
-                <div class="news-card">
-                    <div class="news-image" style="background-image: url('/static/images/news/news3.jpg');" onerror="this.style.backgroundImage='url(https://via.placeholder.com/400x200/1e5799/ffffff?text=Yangi+Laboratoriya)'"></div>
-                    <div class="news-content">
-                        <div class="news-date">20-mart, 2024</div>
-                        <h3>Yangi laboratoriya ochildi</h3>
-                        <p>Zamonaviy quvvatli energiya tizimlari laboratoriyasi ochildi.</p>
-                    </div>
-                </div>
+            <div class="news-container" id="news-container">
+                <!-- JavaScript orqali to'ldiriladi -->
             </div>
         </div>
     </section>
 
     <!-- Aloqa -->
-    <section id="contact" class="contact">
+    <section id="contact">
         <div class="container">
             <div class="section-title">
                 <h2>Aloqa</h2>
-                <p>Biz bilan bog'laning</p>
+                <p>Biz bilan bog'laning va savollaringizga javob oling</p>
             </div>
-            <div class="contact-content">
+            <div class="contact-container">
                 <div class="contact-info">
+                    <h3>Aloqa ma'lumotlari</h3>
                     <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h3>Manzil</h3>
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <p><strong>Manzil:</strong></p>
                             <p>Sirdaryo viloyati, Shirin shahri, Universitet ko'chasi, 12-uy</p>
                         </div>
                     </div>
                     <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h3>Telefon</h3>
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <p><strong>Telefon:</strong></p>
                             <p>+998 67 123 45 67</p>
                         </div>
                     </div>
                     <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h3>Email</h3>
+                        <div class="contact-icon">✉️</div>
+                        <div>
+                            <p><strong>Email:</strong></p>
                             <p>info@shirinenergetika.uz</p>
                         </div>
                     </div>
                     <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h3>Ish vaqti</h3>
-                            <p>Dushanba-Juma: 8:00-17:00<br>Shanba: 8:00-14:00<br>Yakshanba: dam olish kuni</p>
+                        <div class="contact-icon">🌐</div>
+                        <div>
+                            <p><strong>Veb-sayt:</strong></p>
+                            <p>www.shirinenergetika.uz</p>
                         </div>
                     </div>
                 </div>
-                <div class="map">
-                    <!-- Xarita joylashuvi -->
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3019.244385373722!2d68.66126731541506!3d40.81713297931817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38b1d6a6b8b8b8b8%3A0x8a2b5b2b2b2b2b2b!2sShirin%2C%20Uzbekistan!5e0!3m2!1sen!2s!4v1620000000000!5m2!1sen!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <div class="contact-info">
+                    <h3>Ish vaqti</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">🕒</div>
+                        <div>
+                            <p><strong>Dushanba - Juma:</strong></p>
+                            <p>8:00 - 17:00</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🕒</div>
+                        <div>
+                            <p><strong>Shanba:</strong></p>
+                            <p>8:00 - 14:00</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🕒</div>
+                        <div>
+                            <p><strong>Yakshanba:</strong></p>
+                            <p>Dam olish kuni</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- AI Chat Support -->
+    <div class="ai-chat-support">
+        <button class="ai-chat-btn">
+            <i>🤖</i> AI Yordam
+        </button>
+    </div>
+
+    <!-- Chat Modal -->
+    <div class="chat-modal" id="chatModal">
+        <div class="chat-header">
+            <h3>AI Yordamchi</h3>
+            <button class="close-chat">&times;</button>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="chat-message bot-message">
+                <p>Salom! Men Shirin Energetika Texnikumi AI yordamchisiman. Sizga qanday yordam bera olaman?</p>
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Xabaringizni yozing...">
+            <button class="send-btn" id="sendBtn">➤</button>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Shirin Energetika</h3>
-                    <p>Sirdaryo viloyatidagi eng yirik va nufuzli kasb-hunar ta'lim muassasasi.</p>
+                <div class="footer-section">
+                    <h3>Shirin Energetika Texnikumi</h3>
+                    <p>Sirdaryo viloyati, Shirin shahri, Universitet ko'chasi, 12-uy</p>
+                    <p>Telefon: +998 67 123 45 67</p>
+                    <p>Email: info@shirinenergetika.uz</p>
                 </div>
-                <div class="footer-column">
+                <div class="footer-section">
                     <h3>Tez havolalar</h3>
-                    <ul>
-                        <li><a href="#home">Bosh sahifa</a></li>
-                        <li><a href="#about">Texnikum haqida</a></li>
-                        <li><a href="#specialties">Mutaxassisliklar</a></li>
-                        <li><a href="#chatbot">AI Yordamchi</a></li>
-                    </ul>
+                    <a href="#home">Bosh sahifa</a>
+                    <a href="#about">Kollej haqida</a>
+                    <a href="#timetable">Dars jadvali</a>
+                    <a href="#students">O'quvchilar</a>
+                    <a href="#teachers">O'qituvchilar</a>
+                    <a href="#news">Yangiliklar</a>
+                    <a href="#contact">Aloqa</a>
                 </div>
-                <div class="footer-column">
-                    <h3>Aloqa</h3>
-                    <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> Shirin shahri, Sirdaryo</li>
-                        <li><i class="fas fa-phone"></i> +998 67 123 45 67</li>
-                        <li><i class="fas fa-envelope"></i> info@shirinenergetika.uz</li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Ijtimoiy tarmoqlar</h3>
-                    <ul>
-                        <li><a href="#"><i class="fab fa-telegram"></i> Telegram</a></li>
-                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
-                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
-                        <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
-                    </ul>
+                <div class="footer-section">
+                    <h3>Bizni kuzatib boring</h3>
+                    <div class="social-links">
+                        <a href="#">FB</a>
+                        <a href="#">IG</a>
+                        <a href="#">TG</a>
+                        <a href="#">YT</a>
+                    </div>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2024 Shirin Energetika Texnikumi. Barcha huquqlar himoyalangan.</p>
+                <p>&copy; 2025 Shirin Energetika Texnikumi. Barcha huquqlar himoyalangan.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Chatbot funksiyalari
-        document.addEventListener('DOMContentLoaded', function() {
-            const chatMessages = document.getElementById('chatMessages');
-            const userInput = document.getElementById('userInput');
-            const sendButton = document.getElementById('sendButton');
+        // Dars jadvali ma'lumotlari
+        const scheduleData = {
+            "avm1-25a": {
+                monday: [
+                    "Ma'naviyat soati Abdulatipova S",
+                    "Rus tili Xayitboyeva M 102",
+                    "Ona tili O'rinboyev F 404", 
+                    "Matematika Shukurova G 408"
+                ],
+                tuesday: [
+                    "Tarbiya Djumaboyeva D 206",
+                    "Kompyuter arxitekturasi Ofis jihozlariga tex xiz Xusanov S 213",
+                    "Web dasturlash Xidirov A 215",
+                    "Ingliz tili Xayitboyeva R Abdulatipova S 414/411"
+                ],
+                wednesday: [
+                    "MATEMATIKA Shukurova G 408",
+                    "TARIX Ne'majionov I 407", 
+                    "INGLIZ TILI Xamidova R/ Abdulatipova S 414/411",
+                    "MATEMATIKA Shukurova G 408"
+                ],
+                thursday: [
+                    "Matematika Shukurova G 408",
+                    "Informatika Abloqulovi Shukurov 203/213",
+                    "CH.Q.B.T Yoldoshov F 102",
+                    "Ingliz tili Yamidova/Abdulatipova S 414411"
+                ],
+                friday: [
+                    "Ing tili Xamidova R/Abdulatipova M 414411",
+                    "Ing tili Xamidova R/Abdulatipova M 414411", 
+                    "Fizika Shobutayeva D 201",
+                    ""
+                ]
+            },
+            "avm1-25b": {
+                monday: [
+                    "Ma'naviyat soati Xusanov S",
+                    "Ingliz tili Abdulatipova SAbdullaeva M 410411",
+                    "Kompyuter arxitekturasi va ofis jihozlariga teknik xizmat korsatish Shonazarov J106",
+                    "Jismonly Tarbiya Azimjonov S"
+                ],
+                tuesday: [
+                    "Ingliz tili Abdulatipova S Abdullaeva M 410/411",
+                    "Rus tili Xayitboyeva M 401",
+                    "Fizika Shobutayeva D 201",
+                    ""
+                ],
+                wednesday: [
+                    "TARIX Ne'majionov I 407",
+                    "INGLIZ TILI Abdulatipova S/Abdullayeva 410/411",
+                    "INFORMATIKA Abloquilov A/Shukurov A 213/203",
+                    ""
+                ],
+                thursday: [
+                    "Kompyuter arkitekturasi Ofis jihozlariga teknik xizmat ko'rsatish O'A Xusanov S",
+                    "Matematika Shukurova G 408",
+                    "Informatika Abloqulovi Shukurov 203/213",
+                    "CH.Q.B.T Yoldoshov F 102"
+                ],
+                friday: [
+                    "Ona tili Sayfulaeva B 409",
+                    "Jismoniy tarbiya Azimjonov S",
+                    "Ingliz tili Abdulatipova Sabdullaeva M 410411",
+                    ""
+                ]
+            },
+            "avm1-25rus": {
+                monday: [
+                    "Ma'naviyat soati Xamidova R",
+                    "Ingliz tili Xamidova R Mamatqulova M 414315",
+                    "Tarix Nemajonov I 407",
+                    "Elektr stansiya uskunalarini ta mirlash Xudoyqulov X 204"
+                ],
+                tuesday: [
+                    "Matematika Shukurova G 408",
+                    "Arxitektura personal kompyuter Shonazarov J 106",
+                    "Ingliz tili Xamidova R Malpatsion o'q M 414/315",
+                    ""
+                ],
+                wednesday: [
+                    "O'QUV AMALIYOT SHONAZAROV J 106",
+                    "O'QUV AMALIYOT SHONAZAROV J 106",
+                    "INGLIZ TILI Xayitova B /Tolibjonova M 403/413",
+                    ""
+                ],
+                thursday: [
+                    "Inglis tili Yamidova Mamatqulova 414315",
+                    "Teknikaviy Chizmachilik Xudoyqulov X 204",
+                    "Ing tili Xayitova B/Tolibjonova M 403/413",
+                    "Matematika Shukurova G 408"
+                ],
+                friday: [
+                    "CH.Q.B.T Yoldoshov F 102",
+                    "Fizika Shobutayeva D 201",
+                    "Inglis tili Xamidova Mamatqulova 414315",
+                    ""
+                ]
+            },
+            "avm2-24": {
+                monday: [
+                    "Ma'naviyat soati Xayitova B",
+                    "Web dasturlash Xidirov A 215",
+                    "Ingliz tili Xayitova B Tolibjonova M 403413",
+                    "Informatika Abloqulov A Shukurov A 203213"
+                ],
+                tuesday: [
+                    "Fizika Shobutayeva D 201",
+                    "CH.Q.B.T Yoldoshov F 206",
+                    "Kompyuter tizimlarining dasturiy ta'minoti Xusanov S 213",
+                    "Matematika Shukurova G 408"
+                ],
+                wednesday: [
+                    "D.X.A Djumaboyeva D 206",
+                    "ONA TILI O'rinboyev F 404",
+                    "Axborot xavfsizligi Xusanov S 215",
+                    ""
+                ],
+                thursday: [
+                    "Dasturlash asoslari Xidirov A 215",
+                    "Tarix Nematjonov I 407",
+                    "Biznes Asoslari Ashurov Usrolov J 409",
+                    ""
+                ],
+                friday: [
+                    "Web dasturlash Xidirov A",
+                    "Shaxsiy kompyuter arxitekturasi va ofis jihozlariga texnik xizmat ko'rsatish O'A Ablogulov A 214",
+                    "Ochoobi programma Shonazarov J 106",
+                    ""
+                ]
+            },
+            "avm2-24rus": {
+                monday: [
+                    "Ma'naviyat soati Shonazarov J",
+                    "Informatika Abloqulov A Shonazarov J 214106",
+                    "Rus tili Xayitboyeva M 202 2 korpus",
+                    "Ona tili O'rinboyev F 404"
+                ],
+                tuesday: [
+                    "Ingliz tili Xayitova B Tolibjonova M 403/413",
+                    "Biznes asoslari Isroilov J Ashurov S 409",
+                    "Dasturlash asoslari Shonazarov J 106",
+                    "Rus tili Xayitboyeva M 401"
+                ],
+                wednesday: [
+                    "JISMONIY TARBIYA AZIMJONOV S",
+                    "MATEMATIKA Shukurova G 408",
+                    "TARIX Ne'majionov I 407",
+                    ""
+                ],
+                thursday: [
+                    "D.H.A Djumaboyeva D 106",
+                    "Информатичоная Безопасност Shonazarov J 106",
+                    "Программа Обеспечение Shonazarov J 106",
+                    "Ona tili O'rinboyev F Sayfullaeva B 404/409"
+                ],
+                friday: [
+                    "Web programma Shonazarov J 106",
+                    "Web programma Shonazarov J 106",
+                    "Elektr stansiya uskunalarini ta mirlash Xudoyqulov X 204",
+                    "Matematika Shukurova G/408"
+                ]
+            },
+            "esu1-25": {
+                monday: [
+                    "Ma'naviyat soati Xidirov A",
+                    "Elektr stansiya uskunalarini ta mirlash Xudoyqulov X 204",
+                    "Mehnat Muhofazasi O'sarov Sh",
+                    "Ma'naviyat soati Mamatqulova M"
+                ],
+                tuesday: [
+                    "Rus tili Xayitboyeva M 401",
+                    "Jismoniy tarbiya Azimjonov S",
+                    "Konstruksion materiallar Xudoyqulov X 204",
+                    ""
+                ],
+                wednesday: [
+                    "CH.Q.B.T Yoldoshov F 102",
+                    "Konstruksion materialar Xudoyquilov X 204",
+                    "MATEMATIKA Shukurova G 408",
+                    ""
+                ],
+                thursday: [
+                    "Elektr stansiya uskunalariini tamirlash Xudoyqulov X 204",
+                    "Ing tili Xayitova B/Tolibjonova M 403/413",
+                    "Elektr texnika Isrollov Z 206",
+                    ""
+                ],
+                friday: [
+                    "Ing tili Xayitova B/Tolibjonova M 403413",
+                    "Tarix Nematjonov I 407",
+                    "",
+                    ""
+                ]
+            },
+            "qtem1-25": {
+                monday: [
+                    "Qayta tiklanuvchi energiya manbalarini yig'ish o'matish va ishga tushirish ishlari O'A 206",
+                    "Qayta tiklanuvchi energiya manbalarini yig'ish o'matish va ishga tushirish ishlari O'A 206",
+                    "CH.Q.B.T Yo'ldoshov F",
+                    ""
+                ],
+                tuesday: [
+                    "Qayta tiklanuvchi energiya manbalarini yig'ish o'rnatish va ishga tushirish ishlari O'A",
+                    "Yig'ish o'rnatish va ishga tushirish ishlari O'A",
+                    "Ingliz tili Xayitova B Tolibjonova M 403/413",
+                    ""
+                ],
+                wednesday: [
+                    "",
+                    "",
+                    "",
+                    ""
+                ],
+                thursday: [
+                    "Qayta tiklanuvchi energiya manbalari qurilmalariini yig'ish o'rnatish va ishga tushirish O'A",
+                    "Metrologiya va Standardlashtirish va Sertifikatlashtirish Egamberdiyev S 107",
+                    "Inglis tili Yamidova Mamatqulova 414315",
+                    ""
+                ],
+                friday: [
+                    "Q.T.E.M.T.X.KO'R Toshtemirov A",
+                    "Bio va Geotermal energetika Xudoyqulov X 204",
+                    "Q.T.E.A.M.E.A.E.Q Isroilov Z 106",
+                    ""
+                ]
+            },
+            "em1-25": {
+                monday: [
+                    "Ma'naviyat soati Nematjonov I",
+                    "Ingliz tili Xayitova B Tolibjonova M 403413",
+                    "Elektr texnika Isrollov Z 206",
+                    "Rus tili Xayitboyeva M 102"
+                ],
+                tuesday: [
+                    "Amaliy chizma Xudoyqulov X 204",
+                    "Tarix Nematjonov I 407",
+                    "Informatika Ablogulov Shukurov 203/213",
+                    "Fizika Shobutayeva D 201"
+                ],
+                wednesday: [
+                    "ONA TILI O'rinboyev F 404",
+                    "MEHNAT MUHOFAZASI O'sarov SH 102",
+                    "",
+                    ""
+                ],
+                thursday: [
+                    "Elektr texnika materialar Isrollov Z 206",
+                    "Ing tili Abdulatipova S Mamatqulova M 411315",
+                    "Tarbiya Nematjonov I 407",
+                    ""
+                ],
+                friday: [
+                    "Inormatika Ablogulov A Shukurov A 213214",
+                    "Rus tili Xayitboyeva M 102",
+                    "Elektr stansiya elektr tarmoqlari Isroilov Z 206",
+                    ""
+                ]
+            },
+            "p1-25": {
+                monday: [
+                    "Ma'naviyat soati Isroilov J",
+                    "Elektr texnika Isrollov Z 206",
+                    "Texnikaviy Chizmachili Kudoyqulov X 204",
+                    "Ingliz tili Abdulatipova S Mamatqulova M 410315"
+                ],
+                tuesday: [
+                    "Rus tili Xayitboyeva M 401",
+                    "Amaliy chizma Xudoyqulov X 204",
+                    "",
+                    ""
+                ],
+                wednesday: [
+                    "O'quv Amaliyot Matqosimov A 107",
+                    "",
+                    "MEHNAT MUHOFAZASI O'sarov SH 102",
+                    ""
+                ],
+                thursday: [
+                    "Ona tili O'rinboyev F 404",
+                    "",
+                    "",
+                    ""
+                ],
+                friday: [
+                    "Avtomatik va yarim avtomatik payvandlash texnologiyasi Egamberdiyev S",
+                    "Matematika Shukurova G 408",
+                    "Tarix Nematjonov I 407",
+                    ""
+                ]
+            },
+            "at1-25": {
+                monday: [
+                    "Ma'naviyat soati Yangilov T",
+                    "Ona tili O'rinboyev F 404",
+                    "",
+                    "Ingliz tili Abdulatipova S Mamatqulova M 410315"
+                ],
+                tuesday: [
+                    "Tarix Nematjonov I 407",
+                    "Avtomobil tuzilishi Yangilov T 102",
+                    "Informatika Ablogulov Shukurov 203/213",
+                    "Ona tili O'rinboyev F 401"
+                ],
+                wednesday: [
+                    "INGLIZ TILI Abdulatipova S Mamataudova M 410/315 FIZIKA Shobotayeva D 201",
+                    "",
+                    "",
+                    ""
+                ],
+                thursday: [
+                    "Fizika Shobutaeva D 204",
+                    "",
+                    "",
+                    ""
+                ],
+                friday: [
+                    "Avtomobil shassisi texnik xizmat ko'rsatish O'A Qochqor G' 103",
+                    "",
+                    "",
+                    ""
+                ]
+            },
+            "esu2-24": {
+                monday: [
+                    "Ma'naviyat soati Shukurova G",
+                    "Tarix Nemajonov I 407",
+                    "Informatika Abloqulov A Shukurov A 214213",
+                    "Tarix Nematjonov I 407"
+                ],
+                tuesday: [
+                    "Jismoniy tarbiya Azimjonov S",
+                    "Ona tili O'rinboyev F 404",
+                    "Biznes asoslari Isroilov J Ashurov S 409",
+                    ""
+                ],
+                wednesday: [
+                    "O'QUV AMALYOT I Promqulov M 214",
+                    "INFORMATIKA Abloquilov A/Shukurov A 213/203",
+                    "BIZNES ASOSLARI ASHUROV ISROILOV 409",
+                    ""
+                ],
+                thursday: [
+                    "Ing tili Xayitova B/Tolibjonova M 403/413",
+                    "Fizika Shobutayeva D 201",
+                    "Elektr stansiya uskunalariini ta'mirlash Xudoyqulov X 204",
+                    ""
+                ],
+                friday: [
+                    "Tarbiya Djumaboyeva D 204",
+                    "Elektr stansiya gozon jihozlarini tamirlash Xudoyqulov X 204",
+                    "Ch.Q.B.T Yoldoshov F 213",
+                    ""
+                ]
+            },
+            "em2-24": {
+                monday: [
+                    "Ma'naviyat soati Abloqulov A",
+                    "Matematika Shukurova G 408",
+                    "Biznes asoslari Ashurov S Isroilov J 409",
+                    ""
+                ],
+                tuesday: [
+                    "Biznes asoslari Isroilov J Ashurov S 409",
+                    "Matematika Shukurova G 408",
+                    "Ona tili O'rinboyev F 404",
+                    ""
+                ],
+                wednesday: [
+                    "INGLIZ TILI Xayitova B /Tolibjonova M 403/413",
+                    "INGLIZ TILI Xayitova B /Tolibjonova M 403/413",
+                    "ONA TILI O'rinboyev F 404",
+                    ""
+                ],
+                thursday: [
+                    "Elektr stansiya va elekr tarmoqlariga teknik xizmat ko'rsatish O'A Jamolov S",
+                    "",
+                    "",
+                    ""
+                ],
+                friday: [
+                    "Elektr stansiya va elektr tarmoqlari Isroilov Z 206",
+                    "Bino inshotlarning elektr taminoti Isroilov Z 206",
+                    "Rus tili Xayitboyeva M 102",
+                    ""
+                ]
+            },
+            "p2-24": {
+                monday: [
+                    "Ma'naviyat soati O'rinboyev F",
+                    "Plastik quvurlar pay vandlash texnologiyasi Egamberdiyev S 107",
+                    "Matematika Shukurova G 408",
+                    ""
+                ],
+                tuesday: [
+                    "Plastik quvurlar payvandlash texnologiyasi O'A Egamberdiyev S 107",
+                    "Fizika Shobutayeva D 201",
+                    "Avtomobil uzatmalar qutisiga texnik xizmat ko'rsatish Yangilov T 102",
+                    ""
+                ],
+                wednesday: [
+                    "BIZNES ASOSLARI ASHUROV ISROILOV 409",
+                    "",
+                    "JISMNONIY TARBIYA AZIMJONOV S",
+                    ""
+                ],
+                thursday: [
+                    "Informatika Abloqulovi Shukurov 203/213",
+                    "Ona tili O'rinboyev F 404",
+                    "Payvand birikmalari defektopiyasi Egamberdiyev S 107",
+                    ""
+                ],
+                friday: [
+                    "Tarix Nematjonov I 407",
+                    "Plastik quvurlar payvandlash texologiyasi Egamberdiyev S 107",
+                    "Jismoniy Tarbiya Azimjonov S",
+                    ""
+                ]
+            },
+            "at2-24": {
+                monday: [
+                    "Ma'naviyat soati Shukurov Alish",
+                    "Biznes asoslarj Isroilov J Ashurov S 409",
+                    "CH.Q.B.T Yoldshov F 102",
+                    "Ingliz tili Xayitova B Tolibjonova"
+                ],
+                tuesday: [
+                    "Informatika Ablogulov Shukurov 203/213",
+                    "Matematika Shukurova G 408",
+                    "Ona tili O'rinboyev F 401",
+                    ""
+                ],
+                wednesday: [
+                    "AVTOMOIBILLARNI YOQILG'I BILAN TAMINLASH O'A Xolnazarov G' 103",
+                    "",
+                    "",
+                    ""
+                ],
+                thursday: [
+                    "Informatika Abloqulovi Shukurov 203/213",
+                    "Ona tili O'rinboyev F 404",
+                    "Matematika Shukurova G 408",
+                    ""
+                ],
+                friday: [
+                    "Ona tili O'rinboyev F 404",
+                    "Ona tili O'rinboyev F 404",
+                    "",
+                    ""
+                ]
+            }
+        };
+
+        // O'quvchilar ma'lumotlari
+        const studentsData = [
+            {
+                name: "Aliyev Aziz",
+                group: "AVM-1-25A",
+                specialty: "Axborot vositalari va mashinalari",
+                birthDate: "2008-03-15",
+                address: "Shirin shahri, Yangiobod tumani",
+                phone: "+998 90 123 45 67",
+                email: "aziz.aliyev@example.uz",
+                image: "https://via.placeholder.com/300x200/1e5799/ffffff?text=O'quvchi+1",
+                achievements: ["2024-yil 'Eng yaxshi dasturchi' tanlovi g'olibi", "Matematika olimpiadasi 2-o'rin"]
+            },
+            {
+                name: "Hasanova Malika",
+                group: "EM-1-25",
+                specialty: "Elektr montyori",
+                birthDate: "2007-11-22",
+                address: "Shirin shahri, Markaziy tuman",
+                phone: "+998 91 234 56 78",
+                email: "malika.hasanova@example.uz",
+                image: "https://via.placeholder.com/300x200/1e5799/ffffff?text=O'quvchi+2",
+                achievements: ["Elektr texnikasi bo'yicha respublika tanlovi ishtirokchisi", "Yilning eng faol o'quvchisi"]
+            },
+            {
+                name: "Karimov Jasur",
+                group: "P-1-25",
+                specialty: "Payvandchi",
+                birthDate: "2008-07-08",
+                address: "Shirin shahri, Sanoat tumani",
+                phone: "+998 93 345 67 89",
+                email: "jasur.karimov@example.uz",
+                image: "https://via.placeholder.com/300x200/1e5799/ffffff?text=O'quvchi+3",
+                achievements: ["Payvandlash bo'yicha mahorat tanlovi g'olibi", "Sport musobaqalari ishtirokchisi"]
+            },
+            {
+                name: "Rahimova Dilnoza",
+                group: "AT-1-25",
+                specialty: "Avtomobil transporti",
+                birthDate: "2007-12-30",
+                address: "Shirin shahri, Yangi hayot tumani",
+                phone: "+998 94 456 78 90",
+                email: "dilnoza.rahimova@example.uz",
+                image: "https://via.placeholder.com/300x200/1e5799/ffffff?text=O'quvchi+4",
+                achievements: ["Avtomobil texnikasi bo'yicha ilmiy ish muallifi", "Ijtimoiy loyihalar faoli"]
+            }
+        ];
+
+        // O'qituvchilar ma'lumotlari
+        const teachersData = [
+            {
+                name: "Rashidov Anvar",
+                position: "Direktor",
+                specialty: "Energetika",
+                experience: "25 yil",
+                education: "Toshkent Energetika Universiteti",
+                subjects: ["Energetika asoslari", "Elektr stansiyalari"],
+                image: "https://via.placeholder.com/300x200/1e5799/ffffff?text=O'qituvchi+1"
+            },
+            {
+                name: "Ismailova Gulnora",
+                position: "O'qituvchi",
+                specialty: "Elektr texnikasi",
+                experience: "15 yil",
+                education: "Toshkent Texnika Universiteti",
+                subjects: ["Elektr texnikasi", "Elektr mashinalari"],
+                image: "https://via.placeholder.com/300x200/1e5799/ffffff?text=O'qituvchi+2"
+            },
+            {
+                name: "Yusupov Bahodir",
+                position: "O'qituvchi",
+                specialty: "Axborot texnologiyalari",
+                experience: "20 yil",
+                education: "Toshkent Axborot Texnologiyalari Universiteti",
+                subjects: ["Web dasturlash", "Kompyuter tarmoqlari"],
+                image: "https://via.placeholder.com/300x200/1e5799/ffffff?text=O'qituvchi+3"
+            },
+            {
+                name: "Tursunova Zulfiya",
+                position: "O'qituvchi",
+                specialty: "Payvandlash texnologiyasi",
+                experience: "18 yil",
+                education: "Toshkent Kimyo-Texnologiya Instituti",
+                subjects: ["Payvandlash texnologiyasi", "Materialshunoslik"],
+                image: "https://via.placeholder.com/300x200/1e5799/ffffff?text=O'qituvchi+4"
+            }
+        ];
+
+        // Yangiliklar ma'lumotlari
+        const newsData = [
+            {
+                title: "Yangi o'quv yili boshlanishi",
+                date: "2025-09-01",
+                content: "2025-2026 o'quv yili tantanali marosim bilan boshlanadi. Barcha o'quvchilar va o'qituvchilarni 1-sentabr kuni soat 9:00 da kollej binosida kutamiz.",
+                image: "https://via.placeholder.com/350x200/1e5799/ffffff?text=Yangilik+1"
+            },
+            {
+                title: "Energetika olimpiadasi",
+                date: "2025-10-15",
+                content: "Respublika energetika olimpiadasida bizning kollej talabalari birinchi o'rinni qo'lga kiritdi. G'oliblarni qalbimizdan tabriklaymiz!",
+                image: "https://via.placeholder.com/350x200/1e5799/ffffff?text=Yangilik+2"
+            },
+            {
+                title: "Yangi laboratoriya ochildi",
+                date: "2025-11-05",
+                content: "Kollejda zamonaviy uskunalar bilan jihozlangan yangi energetika laboratoriyasi ochildi. Bu o'quv jarayonini yanada samarali tashkil etishga yordam beradi.",
+                image: "https://via.placeholder.com/350x200/1e5799/ffffff?text=Yangilik+3"
+            }
+        ];
+
+        // Dars jadvalini ko'rsatish
+        function displaySchedule(group, day = 'all') {
+            const tableBody = document.querySelector('#schedule-table tbody');
+            tableBody.innerHTML = '';
             
-            // Xabarlar tarixi
-            let messageHistory = [];
+            if (!group || !scheduleData[group]) {
+                tableBody.innerHTML = '<tr><td colspan="6" style="text-align: center;">Iltimos, guruhni tanlang</td></tr>';
+                return;
+            }
             
-            // Xabarni yuborish funksiyasi
-            function sendMessage() {
-                const message = userInput.value.trim();
-                if (message === '') return;
+            const schedule = scheduleData[group];
+            const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
+            const dayNames = ['Dushanba', 'Seshanba', 'Chorshanba', 'Payshanba', 'Juma'];
+            
+            // 4 ta dars uchun qatorlar yaratish
+            for (let i = 0; i < 4; i++) {
+                const tr = document.createElement('tr');
                 
-                // Foydalanuvchi xabarini qo'shish
-                addMessage(message, 'user');
-                userInput.value = '';
+                // Dars raqami
+                const timeTd = document.createElement('td');
+                timeTd.className = 'time-column';
+                timeTd.textContent = `${i + 1}-dars`;
+                tr.appendChild(timeTd);
                 
-                // API ga so'rov yuborish
-                fetch('/api/chat', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ message: message })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === 'success') {
-                        addMessage(data.response, 'bot');
+                // Har bir kun uchun dars ma'lumotlari
+                days.forEach((dayKey, index) => {
+                    const dayTd = document.createElement('td');
+                    
+                    if (day === 'all' || day === dayKey) {
+                        dayTd.textContent = schedule[dayKey] && schedule[dayKey][i] ? schedule[dayKey][i] : '';
                     } else {
-                        addMessage('Kechirasiz, xatolik yuz berdi. Iltimos, qaytadan urinib ko\'ring.', 'bot');
+                        dayTd.textContent = '';
                     }
-                })
-                .catch(error => {
-                    console.error('Xatolik:', error);
-                    addMessage('Server bilan aloqa qilishda xatolik yuz berdi.', 'bot');
+                    
+                    tr.appendChild(dayTd);
                 });
+                
+                tableBody.appendChild(tr);
             }
+        }
+
+        // O'quvchilarni ko'rsatish
+        function displayStudents() {
+            const container = document.getElementById('students-container');
+            container.innerHTML = '';
             
-            // Xabarni chatga qo'shish
-            function addMessage(text, sender) {
-                const messageDiv = document.createElement('div');
-                messageDiv.className = `message ${sender}-message`;
+            studentsData.forEach(student => {
+                const card = document.createElement('div');
+                card.className = 'card';
                 
-                const contentDiv = document.createElement('div');
-                contentDiv.className = 'message-content';
+                card.innerHTML = `
+                    <div class="card-img">
+                        <img src="${student.image}" alt="${student.name}">
+                    </div>
+                    <div class="card-content">
+                        <h3>${student.name}</h3>
+                        <p><strong>Guruh:</strong> ${student.group}</p>
+                        <p><strong>Mutaxassislik:</strong> ${student.specialty}</p>
+                        <p><strong>Tug'ilgan sana:</strong> ${formatDate(student.birthDate)}</p>
+                        <p><strong>Manzil:</strong> ${student.address}</p>
+                        <p><strong>Telefon:</strong> ${student.phone}</p>
+                        <p><strong>Email:</strong> ${student.email}</p>
+                        <p><strong>Yutuqlar:</strong> ${student.achievements.join(', ')}</p>
+                    </div>
+                `;
                 
-                // Matnni formatlash (yangi qatorlarni saqlash)
-                const formattedText = text.replace(/\n/g, '<br>');
-                contentDiv.innerHTML = formattedText;
+                container.appendChild(card);
+            });
+        }
+
+        // O'qituvchilarni ko'rsatish
+        function displayTeachers() {
+            const container = document.getElementById('teachers-container');
+            container.innerHTML = '';
+            
+            teachersData.forEach(teacher => {
+                const card = document.createElement('div');
+                card.className = 'card';
                 
-                messageDiv.appendChild(contentDiv);
-                chatMessages.appendChild(messageDiv);
+                card.innerHTML = `
+                    <div class="card-img">
+                        <img src="${teacher.image}" alt="${teacher.name}">
+                    </div>
+                    <div class="card-content">
+                        <h3>${teacher.name}</h3>
+                        <p><strong>Lavozim:</strong> ${teacher.position}</p>
+                        <p><strong>Mutaxassislik:</strong> ${teacher.specialty}</p>
+                        <p><strong>Tajriba:</strong> ${teacher.experience}</p>
+                        <p><strong>Ma'lumoti:</strong> ${teacher.education}</p>
+                        <p><strong>O'qitadigan fanlar:</strong> ${teacher.subjects.join(', ')}</p>
+                    </div>
+                `;
                 
-                // Chatni pastga aylantirish
-                chatMessages.scrollTop = chatMessages.scrollHeight;
+                container.appendChild(card);
+            });
+        }
+
+        // Yangiliklarni ko'rsatish
+        function displayNews() {
+            const container = document.getElementById('news-container');
+            container.innerHTML = '';
+            
+            newsData.forEach(news => {
+                const newsItem = document.createElement('div');
+                newsItem.className = 'news-item';
                 
-                // Xabarlar tarixiga qo'shish
-                messageHistory.push({ sender, text });
+                newsItem.innerHTML = `
+                    <div class="news-img">
+                        <img src="${news.image}" alt="${news.title}">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">${formatDate(news.date)}</div>
+                        <h3>${news.title}</h3>
+                        <p>${news.content}</p>
+                    </div>
+                `;
+                
+                container.appendChild(newsItem);
+            });
+        }
+
+        // Sana formatini o'zgartirish
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('uz-UZ', options);
+        }
+
+        // Railway backend ga so'rov yuborish
+        async function sendToAIBot(message) {
+            try {
+                // O'Z BACKEND URL NI QO'YING
+                const response = await fetch('https://your-app-name.up.railway.app/chat', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({message: message})
+                });
+                
+                const data = await response.json();
+                return data.reply;
+            } catch (error) {
+                console.error('Xatolik:', error);
+                return "Kechirasiz, server bilan aloqa uzildi. Iltimos, keyinroq urinib ko'ring.";
             }
+        }
+
+        // Chat funksiyalari
+        function addMessage(message, isUser = false) {
+            const chatBody = document.getElementById('chatBody');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chat-message ${isUser ? 'user-message' : 'bot-message'}`;
+            messageDiv.innerHTML = `<p>${message}</p>`;
+            chatBody.appendChild(messageDiv);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function handleUserMessage() {
+            const chatInput = document.getElementById('chatInput');
+            const message = chatInput.value.trim();
             
-            // Tugmani bosish orqali xabar yuborish
-            sendButton.addEventListener('click', sendMessage);
+            if (message) {
+                addMessage(message, true);
+                chatInput.value = '';
+                
+                // Railway backend ga so'rov yuborish
+                // Test AI chat
+        fetch('https://shirin-energetika-bot1.madiyor771.repl.co/chat', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({message: 'Salom'})
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error('Xatolik:', error));
+
+        // DOM yuklanganda barcha funksiyalarni ishga tushirish
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dars jadvali elementlarini tanlash
+            const groupSelect = document.getElementById('group-select');
+            const daySelect = document.getElementById('day-select');
             
-            // Enter tugmasini bosish orqali xabar yuborish
-            userInput.addEventListener('keypress', function(e) {
+            // AVTOMATIK RAVISHDA AVM-2-24 GURUHINI KO'RSATISH
+            displaySchedule("avm2-24", "all");
+            
+            // Tanlovlarni kuzatish
+            groupSelect.addEventListener('change', function() {
+                displaySchedule(this.value, daySelect.value);
+            });
+            
+            daySelect.addEventListener('change', function() {
+                displaySchedule(groupSelect.value, this.value);
+            });
+            
+            // Ma'lumotlarni ko'rsatish
+            displayStudents();
+            displayTeachers();
+            displayNews();
+            
+            // AI Chat tugmasi
+            const aiChatBtn = document.querySelector('.ai-chat-btn');
+            const chatModal = document.getElementById('chatModal');
+            const closeChat = document.querySelector('.close-chat');
+            const sendBtn = document.getElementById('sendBtn');
+            const chatInput = document.getElementById('chatInput');
+            
+            aiChatBtn.addEventListener('click', function() {
+                chatModal.style.display = 'flex';
+            });
+            
+            closeChat.addEventListener('click', function() {
+                chatModal.style.display = 'none';
+            });
+            
+            sendBtn.addEventListener('click', handleUserMessage);
+            
+            chatInput.addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
-                    sendMessage();
+                    handleUserMessage();
                 }
             });
             
-            // Navigatsiya linklarini faollashtirish
-            document.querySelectorAll('nav a').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Faol linkni o'zgartirish
-                    document.querySelectorAll('nav a').forEach(item => {
-                        item.classList.remove('active');
-                    });
-                    this.classList.add('active');
-                    
-                    // Scroll qilish
-                    const targetId = this.getAttribute('href');
-                    const targetSection = document.querySelector(targetId);
-                    if (targetSection) {
-                        window.scrollTo({
-                            top: targetSection.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
+            // Navigatsiya aktiv holatini boshqarish
+            const navLinks = document.querySelectorAll('nav a');
+            const sections = document.querySelectorAll('section');
             
-            // Scroll paytida faol navigatsiya linkini o'zgartirish
+            // Scroll qilganda aktiv bo'limni aniqlash
             window.addEventListener('scroll', function() {
-                const sections = document.querySelectorAll('section');
-                const navLinks = document.querySelectorAll('nav a');
-                
-                let currentSection = '';
-                
+                let current = '';
                 sections.forEach(section => {
-                    const sectionTop = section.offsetTop - 100;
+                    const sectionTop = section.offsetTop;
                     const sectionHeight = section.clientHeight;
-                    if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
-                        currentSection = section.getAttribute('id');
+                    if (pageYOffset >= sectionTop - 100) {
+                        current = section.getAttribute('id');
                     }
                 });
                 
                 navLinks.forEach(link => {
                     link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${currentSection}`) {
+                    if (link.getAttribute('href').substring(1) === current) {
                         link.classList.add('active');
                     }
+                });
+            });
+            
+            // Havolalar bo'yicha scroll qilish
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
                 });
             });
         });
