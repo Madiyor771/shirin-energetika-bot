@@ -132,4 +132,5 @@ def call_groq_api(message):
         return jsonify({'reply': "⚠️ Internet bilan bog'liq muammo. Iltimos, keyinroq urinib ko'ring."})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 10000))
+    app.run(host='0.0.0.0', port=port, debug=False)
